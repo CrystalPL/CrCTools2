@@ -1,0 +1,5 @@
+name: CrCTools
+version: '${version}'
+main: pl.crystalek.crctools.CrCTools
+authors: [ Crystal ]
+website: crystalek.pl
