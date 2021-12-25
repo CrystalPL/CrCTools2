@@ -6,5 +6,5 @@ public interface ICommand extends BaseSubCommand {
 
     boolean isUseConsole();
 
-    String commandPathUsage();
+    String getCommandUsagePath();
 }

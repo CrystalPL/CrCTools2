@@ -10,7 +10,6 @@ import pl.crystalek.crctools.command.CommandManager;
 import pl.crystalek.crctools.config.Config;
 import pl.crystalek.crctools.listener.PlayerCommandListener;
 
-import java.io.File;
 import java.io.IOException;
 
 public final class CrCTools extends JavaPlugin {
@@ -37,9 +36,9 @@ public final class CrCTools extends JavaPlugin {
         }
 
         //save default languages files
-        if (!new File(getDataFolder(), "lang/pl_PL.yml").exists()) {
-            saveResource("lang/pl_PL.yml", false);
-        }
+//        if (!new File(getDataFolder(), "lang/pl_PL.yml").exists()) {
+        saveResource("lang/pl_PL.yml", true); //temporary true
+//        }
 
         final MessageAPI messageAPI = new LocalizedMessageAPI(this);
         if (!messageAPI.init()) {

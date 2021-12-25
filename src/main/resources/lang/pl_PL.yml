@@ -1,3 +1,44 @@
+# wiadomość wyświetlana, gdy komenda zostanie wykonana z konsoli
+noConsole:
+  chat: "&6&lTools &8» &cTa komenda nie może zostać wywołana z poziomu konsoli!"
+
+# wiadomość wyświetlana, gdy gracz nie ma permisji do użycia komendy
+# {PERMISSION} - nazwa wymaganej permisji
+noPermission:
+  chat: "&6&lTools &8» &cBrak uprawnień &7(&6{PERMISSION}&7)."
+
+# wiadomość wyświetlana, gdy gracza nie ma na serwerze
+playerNotFound:
+  chat: "&6&lTools &8»  &cNie znaleziono takiego gracza!"
+
 # wiadomość wyświetlana, gdy gracz chce wywołać komendę, która nie istnieje, lub która jest zablokowana
 commandNotFound:
   chat: "&6&lTools &8» &7Nie odnaleziono podaje komendy."
+
+heal:
+  # wiadomość wysyłana do gracza, który zostanie uleczony przez administratora
+  # {ADMIN_NAME} - nazwa administratora, który uleczył gracza
+  player:
+    chat: "&6&lTools &8» &7Zostałeś uleczony przez gracza &6{ADMIN_NAME}&7."
+
+  # wiadomość wyświetlana, gdy gracz, którego chce uleczyć administrator, ma pełen pasek życia
+  # {PLAYER_NAME} - nazwa gracza, który został uleczony
+  playerFullError:
+    chat: "&6&lTools &8» &cGracz &6{PLAYER_NAME} &cma pełen pasek życia!"
+
+  # wiadomość wysyłana do administratora, który uleczy gracza
+  # {PLAYER_NAME} - nazwa gracza, który został uleczony
+  playerToAdmin:
+    chat: "&6&lTools &8» &7Uleczyłeś gracza &6{PLAYER_NAME}&7."
+
+  # wiadomość wyświetlana, gdy gracz zostanie uleczony
+  yourself:
+    chat: "&6&lTools &8» &7Zostałeś uleczony"
+
+  # wiadomość wyświetlana, gdy gracz ma pełen pasek życia
+  yourselfFullError:
+    chat: "&6&lTools &8» &cMasz pełen pasek życia!"
+
+  # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
+  usage:
+    chat: "&6&lTools &8» &cPoprawne użycie: &7/heal (gracz)."

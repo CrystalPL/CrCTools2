@@ -1,9 +1,11 @@
 package pl.crystalek.crctools.command;
 
+import com.google.common.collect.ImmutableMap;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.crystalek.crcapi.command.CommandRegistry;
 import pl.crystalek.crcapi.message.MessageAPI;
@@ -27,14 +29,41 @@ public final class CommandManager {
     void execute(final CommandSwitcher commandSwitcher, final CommandSender sender, final String[] args) {
         final ICommand command = commandMap.get(commandSwitcher);
         if (command == null) {
-            //wiadomosc, że cos sie zjebalo, mimo ze nie powinno
+            sender.sendMessage("Wystąpił błąd podczas próby użycia komendy, zgłoś błąd administratorowi!");
+            return;
+        }
+
+        if (!sender.hasPermission(command.getPermission())) {
+            messageAPI.sendMessage("noPermission", sender, ImmutableMap.of("{PERMISSION}", command.getPermission()));
+            return;
+        }
+        //true & false = false a potem true
+        if (!command.isUseConsole() && !(sender instanceof Player)) {
+            messageAPI.sendMessage("noConsole", sender);
+            return;
+        }
+
+        if (args.length < command.minArgumentLength() || args.length > command.maxArgumentLength()) {
+            messageAPI.sendMessage(command.getCommandUsagePath(), sender);
+            return;
         }
 
         command.execute(sender, args);
     }
 
     List<String> tabComplete(final CommandSwitcher commandSwitcher, final CommandSender sender, final String[] args) {
-        return new ArrayList<>();
+        final ICommand command = commandMap.get(commandSwitcher);
+        if (command == null) {
+            sender.sendMessage("Wystąpił błąd podczas próby użycia komendy, zgłoś błąd administratorowi!");
+            return new ArrayList<>();
+        }
+
+        if (!sender.hasPermission(command.getPermission())) {
+            messageAPI.sendMessage("noPermission", sender, ImmutableMap.of("{PERMISSION}", command.getPermission()));
+            return new ArrayList<>();
+        }
+
+        return command.tabComplete(sender, args);
     }
 
     public void registerCommands() {
@@ -52,6 +81,7 @@ public final class CommandManager {
 
         final Map<CommandSwitcher, ICommand> commandToRegister = new HashMap<>();
 
+        commandToRegister.put(commandSwitcherMap.get(HealCommand.class), new HealCommand(messageAPI));
 
         for (final Map.Entry<CommandSwitcher, ICommand> entry : commandToRegister.entrySet()) {
             final ICommand command = entry.getValue();
