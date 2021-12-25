@@ -1,7 +1,10 @@
 command:
   HealCommand:
     name: "heal"
-    aliases: "ulecz"
+    aliases: ""
+  FeedCommand:
+    name: "feed"
+    aliases: ""
 
 # lista blokowanych komend
 blockedCommands:
