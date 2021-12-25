@@ -1,0 +1,3 @@
+# wiadomość wyświetlana, gdy gracz chce wywołać komendę, która nie istnieje, lub która jest zablokowana
+commandNotFound:
+  chat: "&6&lTools &8» &7Nie odnaleziono podaje komendy."

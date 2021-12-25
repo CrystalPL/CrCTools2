@@ -22,16 +22,27 @@ public final class Config {
     final FileConfiguration config;
     final JavaPlugin plugin;
     Map<Class<? extends ICommand>, CommandData> commandDataMap;
+    List<String> blockedCommandList;
 
     public boolean load() {
         this.commandDataMap = loadCommands();
-        return commandDataMap != null;
+        if (commandDataMap == null) {
+            return false;
+        }
+
+        this.blockedCommandList = config.getStringList("blockedCommands");
+
+        return true;
     }
 
     private Map<Class<? extends ICommand>, CommandData> loadCommands() {
         final Map<Class<? extends ICommand>, CommandData> commandDataMap = new HashMap<>();
 
         final ConfigurationSection commandsConfigurationSection = config.getConfigurationSection("command");
+        if (commandsConfigurationSection == null) {
+            return commandDataMap;
+        }
+
         for (final String command : commandsConfigurationSection.getKeys(false)) {
             final ConfigurationSection commandConfigurationSection = commandsConfigurationSection.getConfigurationSection(command);
 

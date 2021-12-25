@@ -1,4 +1,5 @@
 command:
-  HealCommand:
-    name: "heal"
-    aliases: "ulecz"
+
+# lista blokowanych komend
+blockedCommands:
+  - "bukkit"
