@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class GameModeCommand implements ICommand {
+public final class GameModeCommand implements ICommand {
     Set<String> argumentList = ImmutableSet.of("survival, creative, adventure, spectator");
     MessageAPI messageAPI;
 
