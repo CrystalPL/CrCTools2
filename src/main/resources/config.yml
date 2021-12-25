@@ -1,0 +1,4 @@
+command:
+  HealCommand:
+    name: "heal"
+    aliases: "ulecz"
