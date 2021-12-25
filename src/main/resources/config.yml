@@ -5,6 +5,9 @@ command:
   FeedCommand:
     name: "feed"
     aliases: ""
+  GameModeCommand:
+    name: "gamemode"
+    aliases: "gm"
 
 # lista blokowanych komend
 blockedCommands:

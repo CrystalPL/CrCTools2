@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -64,7 +65,7 @@ public final class HealCommand implements ICommand {
     @Override
     public List<String> tabComplete(final CommandSender sender, final String[] args) {
         if (args.length == 1) {
-            return Bukkit.getOnlinePlayers().stream().map(Player::getName).filter(player -> player.toLowerCase().startsWith(args[0].toLowerCase())).collect(Collectors.toList());
+            return Bukkit.getOnlinePlayers().stream().map(Player::getName).filter(player -> StringUtils.startsWithIgnoreCase(player, args[0])).collect(Collectors.toList());
         }
 
         return new ArrayList<>();

@@ -83,6 +83,7 @@ public final class CommandManager {
 
         commandToRegister.put(commandSwitcherMap.get(HealCommand.class), new HealCommand(messageAPI));
         commandToRegister.put(commandSwitcherMap.get(FeedCommand.class), new FeedCommand(messageAPI));
+        commandToRegister.put(commandSwitcherMap.get(GameModeCommand.class), new GameModeCommand(messageAPI));
 
         for (final Map.Entry<CommandSwitcher, ICommand> entry : commandToRegister.entrySet()) {
             final ICommand command = entry.getValue();

@@ -70,3 +70,48 @@ feed:
   # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
   usage:
     chat: "&6&lTools &8» &cPoprawne użycie: &7/feed (gracz)."
+
+gamemode:
+
+  # wiadomość wyświetlana, gdy administrator zmieni graczowi tryb gry
+  # {GAMEMODE} - nazwa trybu gry
+  # {ADMIN_NAME} - nazwa gracza, który zmienił tryb gry
+  setPlayerGameMode:
+    chat: "&6&lTools &8» &7Twój tryb gry został ustawiony na &6{GAMEMODE} &7przez administratora &6{ADMIN_NAME}&7."
+
+  # wiadomość wyświetlana administratorowi, gdy zmieni graczowi tryb gry
+  # {GAMEMODE} - nazwa trybu gry
+  # {PLAYER_NAME} - nazwa gracza, któremu został zmieniony tryb gry
+  setPlayerToAdmin:
+    chat: "&6&lTools &8» &7Tryb gracza &6{PLAYER_NAME} &7został ustawiony na tryb: &6{GAMEMODE}&7."
+
+  # wiadomość wyświetlana, gdy gracz ma już tryb gry, który chce mu ustawić administrator
+  # {PLAYER_NAME} - nazwa gracza, któremu miał zostać zmieniony tryb gry
+  playerSameGameMode:
+    chat: "&6&lTools &8» &cGracz &6{PLAYER_NAME} &7ma już taki tryb gry!"
+
+  # wiadomość wyświetlana, gdy gracz zmieni swój tryb gry
+  # {GAMEMODE} - nazwa trybu gry
+  setGameMode:
+    chat: "&6&lTools &8» &7Twój tryb gry został ustawiony na &6{GAMEMODE}"
+
+  # wiadomość wyświetlana, gdy gracz chce sobie ustawić tryb gry, który już ma
+  sameGameMode:
+    chat: "&6&lTools &8» &cMasz już ten tryb gry!"
+
+  # wiadomość wyświetlana, gdy podany przez gracza tryb gry nie istnieje
+  notFound:
+    chat: "&6&lTools &8» &cNie odnaleziono takiego trybu gry!"
+
+  # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
+  usage:
+    chat:
+      - "&6&lTools &8» &cPoprawne użycia:"
+      - "&6&lTools &8» &6/gamemode <0, survival> &f- &7ustawia tryb przetrwania"
+      - "&6&lTools &8» &6/gamemode <1, creative> &f- &7ustawia tryb kreatywny"
+      - "&6&lTools &8» &6/gamemode <2, adventure> &f- &7ustawia tryb przygody"
+      - "&6&lTools &8» &6/gamemode <3, spectator> &f- &7ustawia tryb obserwatora"
+      - "&6&lTools &8» &6/gamemode <0, survival> <gracz> &f- &7ustawia graczowi tryb survival"
+      - "&6&lTools &8» &6/gamemode <1, creative> <gracz> &f- &7ustawia graczowi tryb kreatywny"
+      - "&6&lTools &8» &6/gamemode <2, adventure> <gracz> &f- &7ustawia graczowi tryb przygody"
+      - "&6&lTools &8» &6/gamemode <3, spectator> <gracz> &f- &7ustawia graczowi tryb obserwatora"
