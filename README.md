@@ -13,7 +13,7 @@ ___
 
 ### Komendy
 
-W pluginie jest wiele koemnd, a poniżej ich lista.
+W pluginie jest wiele komend, a poniżej ich lista.
 
 | Komenda        | Uprawnienie                            | Opis komendy          |
 |----------------|----------------------------------------|-----------------------|
