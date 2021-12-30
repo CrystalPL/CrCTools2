@@ -31,6 +31,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     compileOnly name: 'CrCAPICore'
     compileOnly name: 'CrCAPIMessage'
+    compileOnly name: 'CrCAPIDatabase'
 }
 
 shadowJar {
