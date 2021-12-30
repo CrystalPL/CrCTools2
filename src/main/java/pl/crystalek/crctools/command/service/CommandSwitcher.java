@@ -1,4 +1,4 @@
-package pl.crystalek.crctools.command;
+package pl.crystalek.crctools.command.service;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

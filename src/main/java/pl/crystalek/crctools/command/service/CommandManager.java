@@ -1,4 +1,4 @@
-package pl.crystalek.crctools.command;
+package pl.crystalek.crctools.command.service;
 
 import com.google.common.collect.ImmutableMap;
 import lombok.AccessLevel;
@@ -9,6 +9,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.crystalek.crcapi.command.CommandRegistry;
 import pl.crystalek.crcapi.message.MessageAPI;
+import pl.crystalek.crctools.command.FeedCommand;
+import pl.crystalek.crctools.command.GameModeCommand;
+import pl.crystalek.crctools.command.HealCommand;
 import pl.crystalek.crctools.command.model.CommandData;
 import pl.crystalek.crctools.command.model.ICommand;
 import pl.crystalek.crctools.config.Config;
@@ -37,7 +40,7 @@ public final class CommandManager {
             messageAPI.sendMessage("noPermission", sender, ImmutableMap.of("{PERMISSION}", command.getPermission()));
             return;
         }
-        //true & false = false a potem true
+
         if (!command.isUseConsole() && !(sender instanceof Player)) {
             messageAPI.sendMessage("noConsole", sender);
             return;

@@ -47,12 +47,12 @@ public final class Config {
             final ConfigurationSection commandConfigurationSection = commandsConfigurationSection.getConfigurationSection(command);
 
             final String commandName = commandConfigurationSection.getString("name");
-            final List<String> commandAliases = Arrays.asList(commandConfigurationSection.getString("aliases").split(", "));
 
-            if (commandName == null || commandAliases == null) {
+            if (commandName == null || !commandConfigurationSection.contains("aliases")) {
                 plugin.getLogger().severe("Wystąpił błąd podczas ładowania komendy: " + command);
                 return null;
             }
+            final List<String> commandAliases = Arrays.asList(commandConfigurationSection.getString("aliases").split(", "));
 
             final Class<? extends ICommand> commandClass;
             try {

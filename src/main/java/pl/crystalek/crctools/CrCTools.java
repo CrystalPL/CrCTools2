@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.crystalek.crcapi.config.ConfigHelper;
 import pl.crystalek.crcapi.message.MessageAPI;
 import pl.crystalek.crcapi.messagei18n.LocalizedMessageAPI;
-import pl.crystalek.crctools.command.CommandManager;
+import pl.crystalek.crctools.command.service.CommandManager;
 import pl.crystalek.crctools.config.Config;
 import pl.crystalek.crctools.listener.PlayerCommandListener;
 
