@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import pl.crystalek.crcapi.command.CommandRegistry;
-import pl.crystalek.crcapi.message.MessageAPI;
+import pl.crystalek.crcapi.message.api.MessageAPI;
 import pl.crystalek.crctools.config.Config;
 
 @RequiredArgsConstructor

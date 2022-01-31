@@ -1,24 +1,24 @@
 package pl.crystalek.crctools.command;
 
 import com.google.common.collect.ImmutableMap;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.crystalek.crcapi.message.MessageAPI;
-import pl.crystalek.crctools.command.model.ICommand;
+import pl.crystalek.crcapi.command.impl.SingleCommand;
+import pl.crystalek.crcapi.command.model.CommandData;
+import pl.crystalek.crcapi.message.api.MessageAPI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
-@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public final class FeedCommand implements ICommand {
-    MessageAPI messageAPI;
+public final class FeedCommand extends SingleCommand {
+
+    public FeedCommand(final MessageAPI messageAPI, final Map<Class<? extends SingleCommand>, CommandData> commandDataMap) {
+        super(messageAPI, commandDataMap);
+    }
 
     @Override
     public void execute(final CommandSender sender, final String[] args) {
@@ -64,11 +64,16 @@ public final class FeedCommand implements ICommand {
 
     @Override
     public List<String> tabComplete(final CommandSender sender, final String[] args) {
-        if (args.length == 1) {
+        if (args.length == 1 && sender.hasPermission("crc.tools.feed.player")) {
             return Bukkit.getOnlinePlayers().stream().map(Player::getName).filter(player -> StringUtils.startsWithIgnoreCase(player, args[0])).collect(Collectors.toList());
         }
 
         return new ArrayList<>();
+    }
+
+    @Override
+    public String getPermission() {
+        return "crc.tools.feed";
     }
 
     @Override
@@ -90,10 +95,4 @@ public final class FeedCommand implements ICommand {
     public int minArgumentLength() {
         return 0;
     }
-
-    @Override
-    public String getPermission() {
-        return "crc.tools.feed";
-    }
-
 }

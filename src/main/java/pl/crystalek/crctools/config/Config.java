@@ -2,70 +2,39 @@ package pl.crystalek.crctools.config;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.crystalek.crctools.command.model.CommandData;
-import pl.crystalek.crctools.command.model.ICommand;
+import pl.crystalek.crcapi.command.impl.SingleCommand;
+import pl.crystalek.crcapi.command.loader.CommandLoader;
+import pl.crystalek.crcapi.command.model.CommandData;
+import pl.crystalek.crcapi.core.config.ConfigHelper;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Getter
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public final class Config {
-    final FileConfiguration config;
-    final JavaPlugin plugin;
-    Map<Class<? extends ICommand>, CommandData> commandDataMap;
+public final class Config extends ConfigHelper {
+    Map<Class<? extends SingleCommand>, CommandData> commandDataMap;
     List<String> blockedCommandList;
 
-    public boolean load() {
-        this.commandDataMap = loadCommands();
-        if (commandDataMap == null) {
+    public Config(final JavaPlugin plugin, final String fileName) {
+        super(plugin, fileName);
+    }
+
+    @SneakyThrows
+    public boolean loadConfig() {
+        final Optional<Map<Class<? extends SingleCommand>, CommandData>> commandDataMapOptional = CommandLoader.loadCommands(configuration.getConfigurationSection("command"), plugin.getClass().getClassLoader(), plugin);
+        if (!commandDataMapOptional.isPresent()) {
             return false;
         }
+        this.commandDataMap = commandDataMapOptional.get();
 
-        this.blockedCommandList = config.getStringList("blockedCommands");
+        this.blockedCommandList = configuration.getStringList("blockedCommands");
 
         return true;
     }
 
-    private Map<Class<? extends ICommand>, CommandData> loadCommands() {
-        final Map<Class<? extends ICommand>, CommandData> commandDataMap = new HashMap<>();
-
-        final ConfigurationSection commandsConfigurationSection = config.getConfigurationSection("command");
-        if (commandsConfigurationSection == null) {
-            return commandDataMap;
-        }
-
-        for (final String command : commandsConfigurationSection.getKeys(false)) {
-            final ConfigurationSection commandConfigurationSection = commandsConfigurationSection.getConfigurationSection(command);
-
-            final String commandName = commandConfigurationSection.getString("name");
-
-            if (commandName == null || !commandConfigurationSection.contains("aliases")) {
-                plugin.getLogger().severe("Wystąpił błąd podczas ładowania komendy: " + command);
-                return null;
-            }
-            final List<String> commandAliases = Arrays.asList(commandConfigurationSection.getString("aliases").split(", "));
-
-            final Class<? extends ICommand> commandClass;
-            try {
-                commandClass = (Class<? extends ICommand>) Class.forName("pl.crystalek.crctools.command." + command);
-            } catch (final ClassNotFoundException exception) {
-                plugin.getLogger().severe("Wystąpił błąd podczas ładowania komendy: " + command);
-                plugin.getLogger().severe("Nie odnaleziono klasy: " + command);
-                return null;
-            }
-
-            commandDataMap.put(commandClass, new CommandData(commandName, commandAliases));
-        }
-
-        return commandDataMap;
-    }
 }

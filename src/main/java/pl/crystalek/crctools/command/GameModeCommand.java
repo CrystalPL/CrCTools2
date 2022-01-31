@@ -3,25 +3,27 @@ package pl.crystalek.crctools.command;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.crystalek.crcapi.message.MessageAPI;
-import pl.crystalek.crcapi.util.NumberUtil;
-import pl.crystalek.crctools.command.model.ICommand;
+import pl.crystalek.crcapi.command.impl.SingleCommand;
+import pl.crystalek.crcapi.command.model.CommandData;
+import pl.crystalek.crcapi.core.util.NumberUtil;
+import pl.crystalek.crcapi.message.api.MessageAPI;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public final class GameModeCommand implements ICommand {
+public final class GameModeCommand extends SingleCommand {
     Set<String> argumentList = ImmutableSet.of("survival, creative, adventure, spectator");
-    MessageAPI messageAPI;
+
+    public GameModeCommand(final MessageAPI messageAPI, final Map<Class<? extends SingleCommand>, CommandData> commandDataMap) {
+        super(messageAPI, commandDataMap);
+    }
 
     @Override
     public void execute(final CommandSender sender, final String[] args) {
@@ -44,6 +46,11 @@ public final class GameModeCommand implements ICommand {
         }
 
         if (args.length == 2) {
+            if (!sender.hasPermission("crc.tools.gamemode.player")) {
+                messageAPI.sendMessage("noPermission", sender, ImmutableMap.of("{PERMISSION}", "crc.tools.gamemode.player"));
+                return;
+            }
+
             final Player player = Bukkit.getPlayer(args[1]);
             if (player == null) {
                 messageAPI.sendMessage("playerNotFound", sender);
@@ -94,7 +101,7 @@ public final class GameModeCommand implements ICommand {
             return argumentList.stream().filter(argument -> StringUtils.startsWithIgnoreCase(argument, args[0])).collect(Collectors.toList());
         }
 
-        if (args.length == 2) {
+        if (args.length == 2 && sender.hasPermission("crc.tools.gamemode.player")) {
             return Bukkit.getOnlinePlayers().stream().map(Player::getName).filter(player -> StringUtils.startsWithIgnoreCase(player, args[1])).collect(Collectors.toList());
         }
 
