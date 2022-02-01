@@ -91,6 +91,8 @@ public final class CrCTools extends JavaPlugin {
 
     private void runTasks() {
         final BukkitScheduler scheduler = Bukkit.getScheduler();
-        scheduler.runTaskTimerAsynchronously(this, new AfkTask(userCache, config, this), 0, 20L);
+        if (config.isAntiAfk()) {
+            scheduler.runTaskTimerAsynchronously(this, new AfkTask(userCache, config, this), 0, 20L);
+        }
     }
 }
