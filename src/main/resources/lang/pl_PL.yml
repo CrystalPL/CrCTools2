@@ -15,6 +15,16 @@ playerNotFound:
 commandNotFound:
   chat: "&6&lTools &8» &7Nie odnaleziono podaje komendy."
 
+afk:
+  afkWarn1:
+    chat:
+      - "&6&lTools &8» &cPorusz się inaczej zostanie wyrzucony z serwera!"
+      - "&6&lTools &8» &cOstrzeżenie &61&7/&63&c!"
+  afkWarn2:
+    chat:
+      - "&6&lTools &8» &cPorusz się inaczej zostanie wyrzucony z serwera!"
+      - "&6&lTools &8» &cOstrzeżenie &62&7/&63&c!"
+
 heal:
   # wiadomość wysyłana do gracza, który zostanie uleczony przez administratora
   # {ADMIN_NAME} - nazwa administratora, który uleczył gracza
@@ -72,7 +82,6 @@ feed:
     chat: "&6&lTools &8» &cPoprawne użycie: &7/feed (gracz)."
 
 gamemode:
-
   # wiadomość wyświetlana, gdy administrator zmieni graczowi tryb gry
   # {GAMEMODE} - nazwa trybu gry
   # {ADMIN_NAME} - nazwa gracza, który zmienił tryb gry

@@ -1,3 +1,4 @@
+# konfiguracja komend i ich aliasów
 command:
   HealCommand:
     name: "heal"
@@ -9,6 +10,56 @@ command:
     name: "gamemode"
     aliases: "gm"
 
+# czy ma być wyświetlana customowa wiadomość, jeśli użyta przez gracza komenda nie istnieje
+commandNotFoundMessage: true
+
 # lista blokowanych komend
+# jeśli gracz będzie próbował użyć komendy, dostanie wiadomość, że takowa nie istnieje (commandNotFound w pliku wiadomości)
 blockedCommands:
   - "bukkit"
+
+# czy ma być włączony antyafk
+antiAfk: true
+
+# czy użycie jakiejkolwiek komendy ma anulować afk
+cancelAfkWhenUseCommand: true
+
+# czy napisanie wiadomości na chat'cie ma anulować afk
+cancelAfkWhenSendMessage: true
+
+# czy poruszanie się ma anulować afk
+cancelAfkWhenMove: true
+
+# czy poruszenie się w pozycji y ma anulować afk
+# działa tylko, gdy cancelAfkWhenMove jest ustawione na true
+cancelAfkWhenMoveY: false
+
+# czy gracz podczas bycia afk może bić graczy/moby
+attackEntityWhileAfk: false
+
+# czy gracz może łapać przedmioty podczas bycia afk
+pickupItemsWhileAfk: false
+
+# czy gracz może łowić ryby będąc afk
+fishWhileAfk: false
+
+# czas nieaktywności, po jakim gracz ma być uznawany za afk
+# czas w sekundach
+afkTime: 600
+
+# jakie akcję mają się dziać po danym czasie afczenia
+# lista akcji:
+# MESSAGE — wysłanie wiadomości
+# COMMAND — wywołanie komendy
+# możesz dodać dowolną ilość komend, podaj je jako listę
+afkAction:
+  600: # czas, po jakim akcja ma się wykonać
+    actionType: MESSAGE
+    action: "afk.afkWarn1" # ścieżka do wiadomości
+  720:
+    actionType: MESSAGE
+    action: "afk.afkWarn2"
+  840:
+    actionType: COMMAND
+    action: "kick {PLAYER_NAME} &cAfk dłużej niż 14 minut." # {PLAYER_NAME} - nick afczącego gracza
+

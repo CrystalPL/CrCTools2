@@ -5,17 +5,22 @@ import lombok.experimental.FieldDefaults;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 import pl.crystalek.crcapi.command.CommandRegistry;
 import pl.crystalek.crcapi.command.impl.SingleCommand;
 import pl.crystalek.crcapi.command.model.CommandData;
+import pl.crystalek.crcapi.core.config.exception.ConfigLoadException;
 import pl.crystalek.crcapi.message.api.MessageAPI;
 import pl.crystalek.crcapi.message.api.MessageAPIProvider;
 import pl.crystalek.crctools.command.FeedCommand;
 import pl.crystalek.crctools.command.GameModeCommand;
 import pl.crystalek.crctools.command.HealCommand;
 import pl.crystalek.crctools.config.Config;
-import pl.crystalek.crctools.listener.PlayerCommandListener;
+import pl.crystalek.crctools.listener.*;
+import pl.crystalek.crctools.task.AfkTask;
+import pl.crystalek.crctools.user.UserCache;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -23,10 +28,21 @@ import java.util.Map;
 public final class CrCTools extends JavaPlugin {
     MessageAPI messageAPI;
     Config config;
+    UserCache userCache;
 
     @Override
     public void onEnable() {
-        config = new Config(this, "config.yml");
+        //save default languages files
+        if (!new File(getDataFolder(), "lang/pl_PL.yml").exists()) {
+            saveResource("lang/pl_PL.yml", false); //temporary true
+        }
+
+        messageAPI = Bukkit.getServicesManager().getRegistration(MessageAPIProvider.class).getProvider().getLocalizedMessage(this);
+        if (!messageAPI.init()) {
+            return;
+        }
+
+        config = new Config(this, "config.yml", messageAPI);
         try {
             config.checkExist();
             config.load();
@@ -38,23 +54,19 @@ public final class CrCTools extends JavaPlugin {
             return;
         }
 
-        if (!config.loadConfig()) {
+        try {
+            config.loadConfig();
+        } catch (final ConfigLoadException exception) {
+            getLogger().severe(exception.getMessage());
             getLogger().severe("Wyłączanie pluginu..");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
 
-        //save default languages files
-//        if (!new File(getDataFolder(), "lang/pl_PL.yml").exists()) {
-        saveResource("lang/pl_PL.yml", true); //temporary true
-//        }
-
-        messageAPI = Bukkit.getServicesManager().getRegistration(MessageAPIProvider.class).getProvider().getLocalizedMessage(this);
-        if (!messageAPI.init()) {
-            return;
-        }
-
+        userCache = new UserCache();
         registerListeners();
+        registerCommands();
+        runTasks();
     }
 
     private void registerCommands() {
@@ -67,6 +79,18 @@ public final class CrCTools extends JavaPlugin {
 
     private void registerListeners() {
         final PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new PlayerCommandListener(config, messageAPI), this);
+        pluginManager.registerEvents(new AsyncPlayerChatListener(config, userCache), this);
+        pluginManager.registerEvents(new EntityDamageByEntityListener(config, userCache), this);
+        pluginManager.registerEvents(new PlayerCommandListener(config, messageAPI, userCache), this);
+        pluginManager.registerEvents(new PlayerJoinListener(userCache), this);
+        pluginManager.registerEvents(new PlayerMoveListener(config, userCache), this);
+        pluginManager.registerEvents(new PlayerPickupItemListener(config, userCache), this);
+        pluginManager.registerEvents(new PlayerFishListener(config, userCache), this);
+        pluginManager.registerEvents(new PlayerQuitListener(userCache), this);
+    }
+
+    private void runTasks() {
+        final BukkitScheduler scheduler = Bukkit.getScheduler();
+        scheduler.runTaskTimerAsynchronously(this, new AfkTask(userCache, config, this), 0, 20L);
     }
 }
