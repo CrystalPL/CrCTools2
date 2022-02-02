@@ -78,3 +78,17 @@ quitMessage: true
 # czy ma być wyświetlana wiadomość powitalna
 # wiadomość jest wysyłana tylko do gracza
 motdMessage: true
+
+# czy gracz ma mieć opóźnienie na wykonywanie komend
+commandCoolDown: true
+
+# czas opóźnienia użycia komend
+# czas w sekundach
+commandCoolDownTime: 3
+
+# separator do wyświetlania czasu
+timeDelimiter: ", "
+
+# czy mają być wyświetlane skrócone formy czasu
+# minut -> min itd.
+shortFormTime: false

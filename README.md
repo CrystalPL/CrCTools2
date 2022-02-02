@@ -39,3 +39,8 @@ ___
 Plugin posiada podstawowe zabezpieczenie przed graczami, którzy afczą. Po określonym czasie afczenia może zostać
 wywołana jakaś komenda lub gracz może dostać wiadomość na czacie. Jeśli gracz będzie miał
 permisję `crc.tools.afk.bypass` nie będzie obowiązywał go zakaz afczenia.
+___
+
+# Informacje
+
+* Jeśli gracz ma uprawnienie `crc.tools.cmdcooldown.bypass`, to nie obowiązuję go czas między wpisywanymi komendami.

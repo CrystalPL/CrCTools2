@@ -30,7 +30,7 @@ import java.util.Optional;
 public final class Config extends ConfigHelper {
     final MessageAPI messageAPI;
     Map<Class<? extends SingleCommand>, CommandData> commandDataMap;
-    boolean commandNotFound;
+    boolean commandNotFoundMessage;
     List<String> blockedCommandList;
     boolean antiAfk;
     boolean cancelAfkWhenUseCommand;
@@ -45,6 +45,10 @@ public final class Config extends ConfigHelper {
     boolean joinMessage;
     boolean quitMessage;
     boolean motdMessage;
+    boolean commandCoolDown;
+    long commandCoolDownTime;
+    String timeDelimiter;
+    boolean shortFormTime;
 
     public Config(final JavaPlugin plugin, final String fileName, final MessageAPI messageAPI) {
         super(plugin, fileName);
@@ -54,7 +58,7 @@ public final class Config extends ConfigHelper {
 
     public void loadConfig() throws ConfigLoadException {
         this.commandDataMap = CommandLoader.loadCommands(configuration.getConfigurationSection("command"), plugin.getClass().getClassLoader(), plugin);
-        this.commandNotFound = ConfigParserUtil.getBoolean(configuration, "commandNotFoundMessage");
+        this.commandNotFoundMessage = ConfigParserUtil.getBoolean(configuration, "commandNotFoundMessage");
         this.blockedCommandList = configuration.getStringList("blockedCommands");
         this.antiAfk = ConfigParserUtil.getBoolean(configuration, "antiAfk");
         this.cancelAfkWhenUseCommand = ConfigParserUtil.getBoolean(configuration, "cancelAfkWhenUseCommand");
@@ -69,6 +73,10 @@ public final class Config extends ConfigHelper {
         this.joinMessage = ConfigParserUtil.getBoolean(configuration, "joinMessage");
         this.quitMessage = ConfigParserUtil.getBoolean(configuration, "quitMessage");
         this.motdMessage = ConfigParserUtil.getBoolean(configuration, "motdMessage");
+        this.commandCoolDown = ConfigParserUtil.getBoolean(configuration, "commandCoolDown");
+        this.commandCoolDownTime = ConfigParserUtil.getLong(configuration, "commandCoolDownTime") * 1000L;
+        this.timeDelimiter = ConfigParserUtil.getString(configuration, "timeDelimiter");
+        this.shortFormTime = ConfigParserUtil.getBoolean(configuration, "shortFormTime");
     }
 
     private Map<Long, IAfkPunishment> loadAfkActionTypeMap() throws ConfigLoadException {

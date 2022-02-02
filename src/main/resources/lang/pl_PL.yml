@@ -41,6 +41,11 @@ quitMessage:
 motdMessage:
   chat: "&aWitaj &6{PLAYER_NAME} &ana serwerze!"
 
+# wiadomość wyświetlana, gdy gracza za szybko chce używać komend
+# {TIME} - czas, za jaki gracz będzie mógł użyć komendy
+commandCoolDown:
+  chat: "&6&lTools &8» &cZwolnij! Nie możesz tak szybko używać komend."
+
 heal:
   # wiadomość wysyłana do gracza, który zostanie uleczony przez administratora
   # {ADMIN_NAME} - nazwa administratora, który uleczył gracza

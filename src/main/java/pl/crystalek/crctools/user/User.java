@@ -9,7 +9,8 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
-    long afkStartTime = System.currentTimeMillis();
+    long afkStartTime;
+    long lastCommandUsedTime;
     boolean afk;
 
     public void resetAfk() {
