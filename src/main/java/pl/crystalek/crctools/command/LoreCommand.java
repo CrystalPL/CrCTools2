@@ -1,6 +1,7 @@
 package pl.crystalek.crctools.command;
 
 import com.google.common.collect.ImmutableMap;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -12,12 +13,13 @@ import pl.crystalek.crcapi.core.util.ColorUtil;
 import pl.crystalek.crcapi.message.api.MessageAPI;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public final class RenameCommand extends SingleCommand {
+public final class LoreCommand extends SingleCommand {
 
-    public RenameCommand(final MessageAPI messageAPI, final Map<Class<? extends SingleCommand>, CommandData> commandDataMap) {
+    public LoreCommand(final MessageAPI messageAPI, final Map<Class<? extends SingleCommand>, CommandData> commandDataMap) {
         super(messageAPI, commandDataMap);
     }
 
@@ -26,17 +28,17 @@ public final class RenameCommand extends SingleCommand {
         final Player player = (Player) sender;
         final ItemStack itemInHand = player.getItemInHand();
         if (itemInHand == null || itemInHand.getType() == Material.AIR) {
-            messageAPI.sendMessage("renameCommand.emptyHand", sender);
+            messageAPI.sendMessage("loreCommand.emptyHand", sender);
             return;
         }
 
-        final String newItemName = ColorUtil.color(String.join(" ", args));
+        final List<String> newLore = ColorUtil.color(Arrays.asList(StringUtils.split(String.join(" ", args), "||")));
 
         final ItemMeta itemMeta = itemInHand.getItemMeta();
-        itemMeta.setDisplayName(newItemName);
+        itemMeta.setLore(newLore);
         itemInHand.setItemMeta(itemMeta);
 
-        messageAPI.sendMessage("renameCommand.rename", sender, ImmutableMap.of("{NAME}", newItemName));
+        messageAPI.sendMessage("loreCommand.lore", sender, ImmutableMap.of("{LORE}", String.join("\n", newLore)));
     }
 
     @Override
@@ -46,7 +48,7 @@ public final class RenameCommand extends SingleCommand {
 
     @Override
     public String getPermission() {
-        return "crc.tools.rename";
+        return "crc.tools.lore";
     }
 
     @Override
@@ -56,7 +58,7 @@ public final class RenameCommand extends SingleCommand {
 
     @Override
     public String getCommandUsagePath() {
-        return "renameCommand.usage";
+        return "loreCommand.usage";
     }
 
     @Override

@@ -12,6 +12,9 @@ command:
   RenameCommand:
     name: "rename"
     aliases: ""
+  LoreCommand:
+    name: "lore"
+    aliases: ""
 
 # czy ma być wyświetlana customowa wiadomość, jeśli użyta przez gracza komenda nie istnieje
 commandNotFoundMessage: true

@@ -30,6 +30,7 @@ W pluginie jest wiele komend, a poniżej ich lista.
 | /gamemode <adventure, 2> \<gracz> | crc.tools.gamemode.player                     | Ustawia graczowi tryb przygody    |
 | /gamemode <spectator, 3> \<gracz> | crc.tools.gamemode.player                     | Ustawia graczowi tryb obserwatora |
 | /rename \<nazwa>                  | crc.tools.rename                              | Zmienia nazwę przedmiotu          |
+| /lore \<opis>                     | crc.tools.lore                                | Zmienia opis przedmiotu           |
 
 ___
 

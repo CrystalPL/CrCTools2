@@ -143,6 +143,7 @@ gamemode:
 
 renameCommand:
   # wiadomość wyświetlana, gdy nazwa przedmiotu zostanie zmieniona
+  # {NAME} - ustawiona nazwa przedmiotu
   rename:
     chat: "&6&lTools &8» &7Zmieniłeś nazwę przedmiotu w ręce na: {NAME}&7."
 
@@ -153,3 +154,19 @@ renameCommand:
   # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
   usage:
     chat: "&6&lTools &8» &cPoprawne użycia: &7/rename <nazwa>."
+
+loreCommand:
+  # wiadomość wyświetlana, gdy opis przedmiotu zostanie zmieniony
+  # {LORE} - ustawiony opis przedmiotu
+  lore:
+    chat:
+      - "&6&lTools &8» &7Opis przedmiotu został zmieniony na:"
+      - "{LORE}"
+
+  # wiadomość wyświetlana, gdy gracz nie trzyma w ręce żadnego przedmiotu
+  emptyHand:
+    chat: "&6&lTools &8» &cNie trzymasz żadnego przedmiotu w ręce!"
+
+  # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
+  usage:
+    chat: "&6&lTools &8» &cPoprawne użycia: &7/lore <nazwa>."
