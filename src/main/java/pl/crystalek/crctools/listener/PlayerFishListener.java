@@ -17,7 +17,7 @@ public final class PlayerFishListener implements Listener {
 
     @EventHandler
     public void onFish(final PlayerFishEvent event) {
-        if (!config.isAntiAfk() || config.isFishWhileAfk()) {
+        if (!config.isAntiAfk() || config.isFishWhileAfk() || event.getPlayer().hasPermission("crc.tools.afk.bypass")) {
             return;
         }
 

@@ -20,7 +20,7 @@ public final class PlayerCommandListener implements Listener {
 
     @EventHandler
     public void onCommand(final PlayerCommandPreprocessEvent event) {
-        if (config.isAntiAfk() && config.isCancelAfkWhenUseCommand()) {
+        if (config.isAntiAfk() && config.isCancelAfkWhenUseCommand() && !event.getPlayer().hasPermission("crc.tools.afk.bypass")) {
             userCache.getUser(event.getPlayer()).resetAfk();
         }
 

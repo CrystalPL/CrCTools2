@@ -27,6 +27,10 @@ public final class EntityDamageByEntityListener implements Listener {
             return;
         }
 
+        if (event.getDamager().hasPermission("crc.tools.afk.bypass")) {
+            return;
+        }
+
         final User user = userCache.getUser(event.getDamager().getUniqueId());
         if (user.isAfk()) {
             event.setCancelled(true);

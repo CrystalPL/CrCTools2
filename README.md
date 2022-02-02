@@ -35,4 +35,5 @@ ___
 # Anty-AFK system
 
 Plugin posiada podstawowe zabezpieczenie przed graczami, którzy afczą. Po określonym czasie afczenia może zostać
-wywołana jakaś komenda lub gracz może dostać wiadomość na czacie.
+wywołana jakaś komenda lub gracz może dostać wiadomość na czacie. Jeśli gracz będzie miał
+permisję `crc.tools.afk.bypass` nie będzie obowiązywał go zakaz afczenia.

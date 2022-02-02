@@ -17,7 +17,7 @@ public final class PlayerPickupItemListener implements Listener {
 
     @EventHandler
     public void onPickup(final PlayerPickupItemEvent event) {
-        if (!config.isAntiAfk() || config.isPickupItemsWhileAfk()) {
+        if (!config.isAntiAfk() || config.isPickupItemsWhileAfk() || event.getPlayer().hasPermission("crc.tools.afk.bypass")) {
             return;
         }
 

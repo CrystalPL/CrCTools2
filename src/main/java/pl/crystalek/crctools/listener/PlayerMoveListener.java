@@ -18,7 +18,7 @@ public final class PlayerMoveListener implements Listener {
 
     @EventHandler
     public void onMove(final PlayerMoveEvent event) {
-        if (!config.isAntiAfk() || !config.isCancelAfkWhenMove()) {
+        if (!config.isAntiAfk() || !config.isCancelAfkWhenMove() || event.getPlayer().hasPermission("crc.tools.afk.bypass")) {
             return;
         }
 

@@ -17,7 +17,7 @@ public final class AsyncPlayerChatListener implements Listener {
 
     @EventHandler
     public void onChat(final AsyncPlayerChatEvent event) {
-        if (!config.isAntiAfk() || !config.isCancelAfkWhenSendMessage()) {
+        if (!config.isAntiAfk() || !config.isCancelAfkWhenSendMessage() || event.getPlayer().hasPermission("crc.tools.afk.bypass")) {
             return;
         }
 
