@@ -15,15 +15,31 @@ playerNotFound:
 commandNotFound:
   chat: "&6&lTools &8» &7Nie odnaleziono podaje komendy."
 
+# konfiguracja wiadomości dla gracza afk
 afk:
   afkWarn1:
     chat:
-      - "&6&lTools &8» &cPorusz się inaczej zostanie wyrzucony z serwera!"
+      - "&6&lTools &8» &cPorusz się inaczej zostaniesz wyrzucony z serwera!"
       - "&6&lTools &8» &cOstrzeżenie &61&7/&63&c!"
   afkWarn2:
     chat:
-      - "&6&lTools &8» &cPorusz się inaczej zostanie wyrzucony z serwera!"
+      - "&6&lTools &8» &cPorusz się inaczej zostaniesz wyrzucony z serwera!"
       - "&6&lTools &8» &cOstrzeżenie &62&7/&63&c!"
+
+# wiadomość wyświetlana, gdy gracz wejdzie na serwer
+# {PLAYER_NAME} - nick gracza
+joinMessage:
+  chat: "&7[&a&l+&7] {PLAYER_NAME}"
+
+# wiadomość wyświetlana, gdy gracz wyjdzie z serwera
+# {PLAYER_NAME} - nick gracza
+quitMessage:
+  chat: "&7[&c&l-&7] {PLAYER_NAME}"
+
+# wiadomość powitalna, wyświetlana po wejściu gracza na serwer
+# {PLAYER_NAME} - nick gracza
+motdMessage:
+  chat: "&aWitaj &6{PLAYER_NAME} &ana serwerze!"
 
 heal:
   # wiadomość wysyłana do gracza, który zostanie uleczony przez administratora

@@ -63,3 +63,12 @@ afkAction:
     actionType: COMMAND
     action: "kick {PLAYER_NAME} &cAfk dłużej niż 14 minut." # {PLAYER_NAME} - nick afczącego gracza
 
+# czy ma być wyświetlana wiadomość, że gracz wszedł na serwer
+joinMessage: true
+
+# czy ma być wyświetlana wiadomość, że gracz wyszedł z serwera
+quitMessage: true
+
+# czy ma być wyświetlana wiadomość powitalna
+# wiadomość jest wysyłana tylko do gracza
+motdMessage: true

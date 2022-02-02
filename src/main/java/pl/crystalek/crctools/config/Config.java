@@ -42,6 +42,9 @@ public final class Config extends ConfigHelper {
     boolean fishWhileAfk;
     long afkTime;
     Map<Long, IAfkPunishment> afkActionTypeMap;
+    boolean joinMessage;
+    boolean quitMessage;
+    boolean motdMessage;
 
     public Config(final JavaPlugin plugin, final String fileName, final MessageAPI messageAPI) {
         super(plugin, fileName);
@@ -63,6 +66,9 @@ public final class Config extends ConfigHelper {
         this.fishWhileAfk = ConfigParserUtil.getBoolean(configuration, "fishWhileAfk");
         this.afkTime = ConfigParserUtil.getLong(configuration, "afkTime") * 1000L;
         this.afkActionTypeMap = loadAfkActionTypeMap();
+        this.joinMessage = ConfigParserUtil.getBoolean(configuration, "joinMessage");
+        this.quitMessage = ConfigParserUtil.getBoolean(configuration, "quitMessage");
+        this.motdMessage = ConfigParserUtil.getBoolean(configuration, "motdMessage");
     }
 
     private Map<Long, IAfkPunishment> loadAfkActionTypeMap() throws ConfigLoadException {

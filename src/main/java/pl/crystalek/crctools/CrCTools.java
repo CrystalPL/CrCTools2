@@ -18,6 +18,7 @@ import pl.crystalek.crctools.command.HealCommand;
 import pl.crystalek.crctools.config.Config;
 import pl.crystalek.crctools.listener.*;
 import pl.crystalek.crctools.task.AfkTask;
+import pl.crystalek.crctools.user.User;
 import pl.crystalek.crctools.user.UserCache;
 
 import java.io.File;
@@ -67,6 +68,8 @@ public final class CrCTools extends JavaPlugin {
         registerListeners();
         registerCommands();
         runTasks();
+
+        Bukkit.getOnlinePlayers().forEach(player -> userCache.addUser(player.getUniqueId(), new User()));
     }
 
     private void registerCommands() {
@@ -82,11 +85,11 @@ public final class CrCTools extends JavaPlugin {
         pluginManager.registerEvents(new AsyncPlayerChatListener(config, userCache), this);
         pluginManager.registerEvents(new EntityDamageByEntityListener(config, userCache), this);
         pluginManager.registerEvents(new PlayerCommandListener(config, messageAPI, userCache), this);
-        pluginManager.registerEvents(new PlayerJoinListener(userCache), this);
+        pluginManager.registerEvents(new PlayerJoinListener(config, userCache, messageAPI), this);
         pluginManager.registerEvents(new PlayerMoveListener(config, userCache), this);
         pluginManager.registerEvents(new PlayerPickupItemListener(config, userCache), this);
         pluginManager.registerEvents(new PlayerFishListener(config, userCache), this);
-        pluginManager.registerEvents(new PlayerQuitListener(userCache), this);
+        pluginManager.registerEvents(new PlayerQuitListener(config, userCache, messageAPI), this);
     }
 
     private void runTasks() {
