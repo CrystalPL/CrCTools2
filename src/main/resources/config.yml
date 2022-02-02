@@ -9,6 +9,9 @@ command:
   GameModeCommand:
     name: "gamemode"
     aliases: "gm"
+  RenameCommand:
+    name: "rename"
+    aliases: ""
 
 # czy ma być wyświetlana customowa wiadomość, jeśli użyta przez gracza komenda nie istnieje
 commandNotFoundMessage: true

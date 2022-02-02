@@ -15,6 +15,7 @@ import pl.crystalek.crcapi.message.api.MessageAPIProvider;
 import pl.crystalek.crctools.command.FeedCommand;
 import pl.crystalek.crctools.command.GameModeCommand;
 import pl.crystalek.crctools.command.HealCommand;
+import pl.crystalek.crctools.command.RenameCommand;
 import pl.crystalek.crctools.config.Config;
 import pl.crystalek.crctools.listener.*;
 import pl.crystalek.crctools.task.AfkTask;
@@ -78,6 +79,7 @@ public final class CrCTools extends JavaPlugin {
         CommandRegistry.register(new FeedCommand(messageAPI, commandDataMap));
         CommandRegistry.register(new HealCommand(messageAPI, commandDataMap));
         CommandRegistry.register(new GameModeCommand(messageAPI, commandDataMap));
+        CommandRegistry.register(new RenameCommand(messageAPI, commandDataMap));
     }
 
     private void registerListeners() {

@@ -140,3 +140,16 @@ gamemode:
       - "&6&lTools &8» &6/gamemode <1, creative> <gracz> &f- &7ustawia graczowi tryb kreatywny"
       - "&6&lTools &8» &6/gamemode <2, adventure> <gracz> &f- &7ustawia graczowi tryb przygody"
       - "&6&lTools &8» &6/gamemode <3, spectator> <gracz> &f- &7ustawia graczowi tryb obserwatora"
+
+renameCommand:
+  # wiadomość wyświetlana, gdy nazwa przedmiotu zostanie zmieniona
+  rename:
+    chat: "&6&lTools &8» &7Zmieniłeś nazwę przedmiotu w ręce na: {NAME}&7."
+
+  # wiadomość wyświetlana, gdy gracz nie trzyma w ręce żadnego przedmiotu
+  emptyHand:
+    chat: "&6&lTools &8» &cNie trzymasz żadnego przedmiotu w ręce!"
+
+  # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
+  usage:
+    chat: "&6&lTools &8» &cPoprawne użycia: &7/rename <nazwa>."
