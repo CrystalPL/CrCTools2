@@ -1,38 +1,28 @@
 plugins {
     id 'java'
-    id "com.github.johnrengelman.shadow" version "7.1.0"
-}
-compileJava.options.encoding = 'UTF-8'
-
-group = 'pl.crystalek'
-version = '2.0'
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
-
-repositories {
-    mavenCentral()
-    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-    maven { url "https://repo.crystalek.pl/crc" }
 }
 
-dependencies {
-    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+subprojects {
+    compileJava.options.encoding = 'UTF-8'
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    group = 'pl.crystalek'
+    version = '2.0'
 
-    compileOnly 'pl.crystalek:message-api:1.4.3'
-    compileOnly 'pl.crystalek:core:1.4.3'
-    compileOnly 'pl.crystalek:command:1.4.3'
-    compileOnly 'pl.crystalek:database:1.4.3'
-}
+    apply plugin: 'java'
 
-shadowJar {
-    archiveFileName = "${archiveBaseName.get()} v${archiveVersion.get()}.${archiveExtension.get()}"
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
-    classifier(null)
-    minimize()
-    destinationDirectory.set(new File("F:\\Minecraft\\minecraft1.8.8\\plugins"))
+    repositories {
+        mavenCentral()
+        maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+    dependencies {
+        compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+
+        compileOnly 'org.projectlombok:lombok:1.18.24'
+        annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    }
 }

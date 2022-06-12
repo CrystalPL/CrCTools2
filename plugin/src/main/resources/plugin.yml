@@ -1,0 +1,7 @@
+name: CrCTools
+version: 2.0
+main: pl.crystalek.crctools.CrCTools
+authors: [ Crystal ]
+website: crystalek.pl
+depend: [ CrCAPI ]
+softdepend: [ Vault ]

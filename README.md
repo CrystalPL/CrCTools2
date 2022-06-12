@@ -34,7 +34,7 @@ W pluginie jest wiele komend, a poniżej ich lista.
 
 ___
 
-# Anty-AFK system
+# Anty-AFK
 
 Plugin posiada podstawowe zabezpieczenie przed graczami, którzy afczą. Po określonym czasie afczenia może zostać
 wywołana jakaś komenda lub gracz może dostać wiadomość na czacie. Jeśli gracz będzie miał

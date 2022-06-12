@@ -1,1 +1,3 @@
 rootProject.name = 'CrCTools'
+include 'plugin'
+include 'api'
