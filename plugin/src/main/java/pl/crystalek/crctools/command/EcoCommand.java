@@ -17,6 +17,7 @@ import pl.crystalek.crctools.user.UserCache;
 
 import java.util.*;
 
+
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public final class EcoCommand extends SingleCommand {
     Economy economy;
@@ -131,7 +132,7 @@ public final class EcoCommand extends SingleCommand {
                             break;
                         case MAX_BALANCE:
                             messageExceptionPath = "economy.maxBalance";
-                            errorReplacements.put("{MAX_GIVE_BALANCE}", config.getMaxBalance() - userCache.getUserData(args[1]).get().getMoney()); //TODO
+                            errorReplacements.put("{MAX_GIVE_BALANCE}", config.getMaxBalance() - userCache.getUserData(args[1]).get().getMoney());
                             break;
                         default:
                             messageExceptionPath = "";
@@ -178,7 +179,7 @@ public final class EcoCommand extends SingleCommand {
                             break;
                         case MAX_MINUS_BALANCE:
                             messageExceptionPath = "economy.takeMaxMinusBalanceError";
-                            errorReplacements.put("{MAX_TAKE_BALANCE}", -config.getMaxMinusBalance() - userCache.getUserData(args[1]).get().getMoney()); //TODO
+                            errorReplacements.put("{MAX_TAKE_BALANCE}", -config.getMaxMinusBalance() - userCache.getUserData(args[1]).get().getMoney());
                             break;
                         default:
                             messageExceptionPath = "";
