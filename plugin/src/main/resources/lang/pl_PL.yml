@@ -175,3 +175,111 @@ loreCommand:
   # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
   usage:
     chat: "&6&lTools &8» &cPoprawne użycia: &7/lore <nazwa>."
+
+economy:
+  # wiadomość wyświetlana, gdy wystąpi nieoczekiwany błąd, np. ze złej konfiguracji
+  # {PLAYER_NAME} - nick gracza, którego konto miało zostać wyzerowane
+  # {ERROR_MESSAGE} - wiadomość błędu — przydatna dla np. osoby konfigurującej plugin
+  resetError:
+    chat:
+      - "&6&lTools &8» &cWystąpił błąd podczas próby resetowania stanu konta gracza: &6{PLAYER_NAME}&7."
+      - "&4Błąd&7: &c{ERROR_MESSAGE}&7."
+
+  # wiadomość wyświetlana, gdy stan konta gracza zostanie wyzerowany
+  # {PLAYER_NAME} - nick gracza, którego konto zostało wyzerowane
+  reset:
+    chat: "&6&lTools &8» &7Stan konta gracza &6{PLAYER_NAME} &7został wyzerowany."
+
+  # wiadomość wyświetlana dla gracza, którego konto zostało wyzerowane
+  # {ADMIN_NAME} - nick administratora, który wyzerował graczowi konto
+  resetToPlayer:
+    chat: "&6&lTools &8» &7Twój stan konta został wyzerowany przez gracza &6{ADMIN_NAME}&7."
+
+  # wiadomość wyświetlana, gdy stan konta gracza zostanie przywrócony do stania początkowego
+  # {PLAYER_NAME} - nick gracza, którego konto zostało przywrócone do wartości domyślnej
+  resetDefault:
+    chat: "&6&lTools &8» &7Stan konta gracza &6{PLAYER_NAME} &7został przywrócony do wartości domyślnej."
+
+  # wiadomość wyświetlana graczowi, którego konto zostało ustawione do stanu początkowego
+  # {ADMIN_NAME} - nick administratora, który przywrócił do wartości domyślnej konto gracza
+  resetDefaultToPlayer:
+    chat: "&6&lTools &8» &7Twój stan konta został przywrócony do wartości domyślnej przez &6{ADMIN_NAME}&7."
+
+  # wiadomość wyświetlana, gdy administrator próbuję ustawić graczowi ujemną wartość konta
+  setNegativeBalance:
+    chat: "&6&lTools &8» &cNie możesz ustawić graczowi ujemnego stanu konta!"
+
+  # wiadomość wyświetlana, gdy administrator próbuję ustawić graczowi zbyć niską wartość konta
+  setMaxMinusBalance:
+    chat: "&6&lTools &8» &cNie możesz ustawić aż tak niskiego salda konta!"
+
+  # wiadomość wyświetlana, gdy administrator próbuję ustawić graczowi zbyć wysoką wartość konta
+  setMaxBalance:
+    chat: "&6&lTools &8» &cNie możesz ustawić aż tak wysokiego salda konta!"
+
+  # wiadomość wyświetlana, gdy stan konta gracza zostanie poprawnie ustawiony
+  # {PLAYER_NAME} - nick gracz, którego wartość konta została zmieniona
+  # {ADMIN_NAME} - nick administratora, który zmienił graczowi wartość konta
+  # {MONEY} - wartość, na jaką konto gracza zostało ustawione
+  setBalance:
+    chat: "&6&lTools &8» &7Stan konta gracza &6{PLAYER_NAME} &7został ustawiony na &6{MONEY}&7$."
+
+  # wiadomość wyświetlana graczowi, którego wartość konta została zmieniona
+  # {PLAYER_NAME} - nick gracz, którego wartość konta została zmieniona
+  # {ADMIN_NAME} - nick administratora, który zmienił graczowi wartość konta
+  # {MONEY} - wartość, na jaką konto gracza zostało ustawione
+  setBalanceToPlayer:
+    chat: "&6&lTools &8» &7Twój stan konta został ustawiony na &6{MONEY}&7$ przez {ADMIN_NAME}&7."
+
+  # wiadomość wyświetlana, gdy podana przez administratora ilość pieniędzy nie jest liczbą
+  moneyValueError:
+    chat: "&6&lTools &8» &cPodana wartość nie jest liczbą!"
+
+  giveNegativeMoney:
+    chat: "&6&lTools &8» &cNie możesz dać graczowi ujemnej liczby pieniędzy!"
+
+  giveMinTransferBalance:
+    chat: "&6&lTools &8» &cMinimalna liczba pieniędzy jaką możesz dać to: &6{MIN_TRANSFER_BALANCE}&7."
+
+  giveMaxTransferBalance:
+    chat: "&6&lTools &8» &cMaksymalna liczba pieniędzy jaką możesz dać to: &6{MAX_TRANSFER_BALANCE}&7."
+
+  maxBalance:
+    chat: "&6&lTools &8» &cNie możesz dać temu graczowi tak wysokiej kwoty pieniędzy, ponieważ przekroczy to maksymalną wartość, jaką może on posiadać na koncie. Maksymalna kwota jaką możesz dać to: &6{MAX_GIVE_BALANCE}&c!"
+
+  give:
+    chat: "&6&lTools &8» &7Gracz &6{PLAYER_NAME} &7otrzymał &6{MONEY}&7$."
+
+  giveToPlayer:
+    chat: "&6&lTools &8» &7Otrzymałeś &6{MONEY}&7$ od &6{ADMIN_NAME}&7."
+
+  takeNegativeMoney:
+    chat: "&6&lTools &8» &cNie możesz zabrać ujemnej liczby pieniędzy!"
+
+  takeMinTransferBalance:
+    chat: "&6&lTools &8» &cMinimalna liczba pieniędzy jaką możesz zabrać to: &6{MIN_TRANSFER_BALANCE}&7."
+
+  takeMaxTransferBalance:
+    chat: "&6&lTools &8» &cMaksymalna liczba pieniędzy jaką możesz zabrać to: &6{MAX_TRANSFER_BALANCE}&7."
+
+  takeMaxMinusBalanceError:
+    chat: "&6&lTools &8» &cNie możesz zabrać graczowi aż takiej kwoty pieniędzy, ponieważ będzie miał zbyt ujemną wartość konta. Maksymalna kwota jaką możesz zabrać to: &6{MAX_TAKE_BALANCE}&c!"
+
+  takeNegativeBalance:
+    chat: "&6&lTools &8» &cGracz po zabraniu pieniędzy nie może mieć ujemnej wartości konta!"
+
+  take:
+    chat: "&6&lTools &8» &7Z konta gracza &6{PLAYER_NAME} &7zabrano &6{MONEY}&7$."
+
+  takeToPlayer:
+    chat: "&6&lTools &8» &7Zabrano ci &6{MONEY}&7$ z konta przez &6{ADMIN_NAME}&7."
+
+  # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
+  usage:
+    chat:
+      - "&6&lTools &8» &cPoprawne użycia:"
+      - "&6&lTools &8» &6/eco set <gracz> <ilość> &f- &7ustawia graczowi zadaną ilość pieniędzy"
+      - "&6&lTools &8» &6/eco give <gracz> <ilość> &f- &7dodaje graczowi zadaną ilość pieniędzy"
+      - "&6&lTools &8» &6/eco take <gracz> <ilość> &f- &7zabiera graczowi zadaną ilość pieniędzy"
+      - "&6&lTools &8» &6/eco reset <gracz> true &f- &7ustawia graczowi stan konta do wartości początkowej (z configu)"
+      - "&6&lTools &8» &6/eco reset <gracz> &f- &7zeruje graczowi stan konta"

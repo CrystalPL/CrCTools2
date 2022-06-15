@@ -10,6 +10,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.crystalek.crctools.api.economy.Economy;
+import pl.crystalek.crctools.api.economy.EconomyResult;
 import pl.crystalek.crctools.api.exception.EconomyException;
 import pl.crystalek.crctools.config.Config;
 import pl.crystalek.crctools.storage.Provider;
@@ -29,7 +30,7 @@ public class EconomyImpl implements Economy {
 
     private double getBalance(final Optional<UserData> userDataOptional) {
         if (!userDataOptional.isPresent()) {
-            throw new EconomyException("user not found");
+            throw new EconomyException("user not found", EconomyResult.USER_NOT_FOUND);
         }
 
         return userDataOptional.get().getMoney();
@@ -37,11 +38,11 @@ public class EconomyImpl implements Economy {
 
     private boolean hasMoney(final Optional<UserData> userDataOptional, final double money) {
         if (!userDataOptional.isPresent()) {
-            throw new EconomyException("user not found");
+            throw new EconomyException("user not found", EconomyResult.USER_NOT_FOUND);
         }
 
         if (money < 0) {
-            throw new EconomyException("cannot check negative money");
+            throw new EconomyException("cannot check negative money", EconomyResult.NEGATIVE_AMOUNT);
         }
 
         return userDataOptional.get().getMoney() >= money;
@@ -49,29 +50,29 @@ public class EconomyImpl implements Economy {
 
     private boolean takeMoney(final Optional<UserData> userDataOptional, final double money) {
         if (!userDataOptional.isPresent()) {
-            throw new EconomyException("user not found");
+            throw new EconomyException("user not found", EconomyResult.USER_NOT_FOUND);
         }
 
         if (money <= 0) {
-            throw new EconomyException("cannot take negative money");
+            throw new EconomyException("cannot take negative money", EconomyResult.TAKE_NEGATIVE_AMOUNT);
         }
 
         if (money < config.getMinTransferBalance()) {
-            throw new EconomyException("minimum transfer balance is: " + config.getMinTransferBalance());
+            throw new EconomyException("minimum transfer balance is: " + config.getMinTransferBalance(), EconomyResult.MIN_TRANSFER_BALANCE);
         }
 
         if (money > config.getMaxTransferBalance()) {
-            throw new EconomyException("maximum transfer balance is: " + config.getMaxTransferBalance());
+            throw new EconomyException("maximum transfer balance is: " + config.getMaxTransferBalance(), EconomyResult.MAX_TRANSFER_BALANCE);
         }
 
         final UserData userData = userDataOptional.get();
         final double moneyAfterTake = userData.getMoney() - money;
         if (moneyAfterTake < 0 && !config.isMinusBalance()) {
-            throw new EconomyException("user cannot have negative balance");
+            throw new EconomyException("user cannot have negative balance", EconomyResult.NEGATIVE_BALANCE);
         }
 
         if (moneyAfterTake < -config.getMaxMinusBalance()) {
-            throw new EconomyException("maximum minus balance is: " + config.getMaxMinusBalance());
+            throw new EconomyException("maximum minus balance is: " + config.getMaxMinusBalance(), EconomyResult.MAX_MINUS_BALANCE);
         }
 
         userData.setMoney(moneyAfterTake);
@@ -81,25 +82,25 @@ public class EconomyImpl implements Economy {
 
     private boolean giveMoney(final Optional<UserData> userDataOptional, final double money) {
         if (!userDataOptional.isPresent()) {
-            throw new EconomyException("user not found");
+            throw new EconomyException("user not found", EconomyResult.USER_NOT_FOUND);
         }
 
         if (money <= 0) {
-            throw new EconomyException("cannot give negative money");
+            throw new EconomyException("cannot give negative money", EconomyResult.GIVE_NEGATIVE_AMOUNT);
         }
 
         if (money < config.getMinTransferBalance()) {
-            throw new EconomyException("minimum transfer balance is: " + config.getMinTransferBalance());
+            throw new EconomyException("minimum transfer balance is: " + config.getMinTransferBalance(), EconomyResult.MIN_TRANSFER_BALANCE);
         }
 
         if (money > config.getMaxTransferBalance()) {
-            throw new EconomyException("maximum transfer balance is: " + config.getMaxTransferBalance());
+            throw new EconomyException("maximum transfer balance is: " + config.getMaxTransferBalance(), EconomyResult.MAX_TRANSFER_BALANCE);
         }
 
         final UserData userData = userDataOptional.get();
         final double moneyAfterGive = userData.getMoney() + money;
         if (moneyAfterGive > config.getMaxBalance()) {
-            throw new EconomyException("maximum balance is: " + config.getMaxBalance());
+            throw new EconomyException("maximum balance is: " + config.getMaxBalance(), EconomyResult.MAX_BALANCE);
         }
 
         userData.setMoney(moneyAfterGive);
@@ -109,19 +110,19 @@ public class EconomyImpl implements Economy {
 
     private void setMoney(final Optional<UserData> userDataOptional, final double money) {
         if (!userDataOptional.isPresent()) {
-            throw new EconomyException("user not found");
+            throw new EconomyException("user not found", EconomyResult.USER_NOT_FOUND);
         }
 
         if (money < 0 && !config.isMinusBalance()) {
-            throw new EconomyException("user cannot have negative balance");
+            throw new EconomyException("user cannot have negative balance", EconomyResult.NEGATIVE_BALANCE);
         }
 
         if (money < -config.getMaxMinusBalance()) {
-            throw new EconomyException("maximum minus balance is: " + config.getMaxMinusBalance());
+            throw new EconomyException("maximum minus balance is: " + config.getMaxMinusBalance(), EconomyResult.MAX_MINUS_BALANCE);
         }
 
         if (money > config.getMaxBalance()) {
-            throw new EconomyException("maximum balance is: " + config.getMaxBalance());
+            throw new EconomyException("maximum balance is: " + config.getMaxBalance(), EconomyResult.MAX_BALANCE);
         }
 
         final UserData userData = userDataOptional.get();

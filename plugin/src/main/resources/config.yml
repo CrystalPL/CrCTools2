@@ -56,6 +56,9 @@ command:
   LoreCommand:
     name: "lore"
     aliases: ""
+  EcoCommand:
+    name: "eco"
+    aliases: "economy"
 
 # czy ma być wyświetlana customowa wiadomość, jeśli użyta przez gracza komenda nie istnieje
 commandNotFoundMessage: true

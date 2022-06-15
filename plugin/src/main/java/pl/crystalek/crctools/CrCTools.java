@@ -33,6 +33,7 @@ public final class CrCTools extends JavaPlugin {
     MessageAPI messageAPI;
     Config config;
     UserCache userCache;
+    EconomyImpl economy;
 
     @Override
     public void onEnable() {
@@ -78,15 +79,16 @@ public final class CrCTools extends JavaPlugin {
         final Provider provider = storage.getProvider();
 
         userCache = new UserCache();
+        economy = new EconomyImpl(config, userCache, this, provider);
+        economy.applyVault();
+
         registerListeners();
         registerCommands();
         runTasks();
 
-        final EconomyImpl economyImpl = new EconomyImpl(config, userCache, this, provider);
-        economyImpl.applyVault();
-
 
         Bukkit.getOnlinePlayers().forEach(player -> userCache.addUser(player, new User(player)));
+
     }
 
     private void registerCommands() {
@@ -97,6 +99,7 @@ public final class CrCTools extends JavaPlugin {
         CommandRegistry.register(new GameModeCommand(messageAPI, commandDataMap));
         CommandRegistry.register(new RenameCommand(messageAPI, commandDataMap));
         CommandRegistry.register(new LoreCommand(messageAPI, commandDataMap));
+        CommandRegistry.register(new EcoCommand(messageAPI, commandDataMap, economy, userCache, userCache));
     }
 
     private void registerListeners() {
