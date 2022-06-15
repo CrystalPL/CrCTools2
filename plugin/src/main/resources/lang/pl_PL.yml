@@ -235,42 +235,72 @@ economy:
   moneyValueError:
     chat: "&6&lTools &8» &cPodana wartość nie jest liczbą!"
 
+  # wiadomość wyświetlana, gdy administrator próbuję dać graczowi ujemną kwotę pieniędzy
   giveNegativeMoney:
     chat: "&6&lTools &8» &cNie możesz dać graczowi ujemnej liczby pieniędzy!"
 
+  # wiadomość wyświetlana, gdy administrator próbuję dać zbyt niską kwotę pieniędzy
+  # {MIN_TRANSFER_BALANCE} - minimalna liczba pieniędzy, jaką administrator może dać
   giveMinTransferBalance:
     chat: "&6&lTools &8» &cMinimalna liczba pieniędzy jaką możesz dać to: &6{MIN_TRANSFER_BALANCE}&7."
 
+  # wiadomość wyświetlana, gdy administrator próbuję dać zbyt wysoką kwotę pieniędzy
+  # {MAX_TRANSFER_BALANCE} - maksymalna liczba pieniędzy, jaką administrator może dać
   giveMaxTransferBalance:
     chat: "&6&lTools &8» &cMaksymalna liczba pieniędzy jaką możesz dać to: &6{MAX_TRANSFER_BALANCE}&7."
 
+  # wiadomość wyświetlana, gdy po dodaniu środków, stan konta gracza będzie większy niż maksymalny
+  # {MAX_GIVE_BALANCE} - maksymalna kwota, jaką administrator może dać
   maxBalance:
     chat: "&6&lTools &8» &cNie możesz dać temu graczowi tak wysokiej kwoty pieniędzy, ponieważ przekroczy to maksymalną wartość, jaką może on posiadać na koncie. Maksymalna kwota jaką możesz dać to: &6{MAX_GIVE_BALANCE}&c!"
 
+  # wiadomość wyświetlana, gdy gracz otrzyma pieniądze
+  # {PLAYER_NAME} - nick gracz, którego wartość konta została zmieniona
+  # {ADMIN_NAME} - nick administratora, który zmienił graczowi wartość konta
+  # {MONEY} - wartość, na jaką konto gracza zostało ustawione
   give:
     chat: "&6&lTools &8» &7Gracz &6{PLAYER_NAME} &7otrzymał &6{MONEY}&7$."
 
+  # wiadomość wyświetlana graczowi, gdy otrzyma pieniądze
+  # {PLAYER_NAME} - nick gracz, którego wartość konta została zmieniona
+  # {ADMIN_NAME} - nick administratora, który zmienił graczowi wartość konta
+  # {MONEY} - wartość, na jaką konto gracza zostało ustawione
   giveToPlayer:
     chat: "&6&lTools &8» &7Otrzymałeś &6{MONEY}&7$ od &6{ADMIN_NAME}&7."
 
+  # wiadomość wyświetlana, gdy administrator próbuję zabrać ujemną kwotę pieniędzy
   takeNegativeMoney:
     chat: "&6&lTools &8» &cNie możesz zabrać ujemnej liczby pieniędzy!"
 
+  # wiadomość wyświetlana, gdy administrator próbuję zabrać zbyt niską kwotę pieniędzy
+  # {MIN_TRANSFER_BALANCE} - minimalna liczba pieniędzy, jaką administrator może zabrać
   takeMinTransferBalance:
     chat: "&6&lTools &8» &cMinimalna liczba pieniędzy jaką możesz zabrać to: &6{MIN_TRANSFER_BALANCE}&7."
 
+  # wiadomość wyświetlana, gdy administrator próbuję zabrać zbyt niską kwotę pieniędzy
+  # {MAX_TRANSFER_BALANCE} - maksymalna liczba pieniędzy, jaką administrator może zabrać
   takeMaxTransferBalance:
     chat: "&6&lTools &8» &cMaksymalna liczba pieniędzy jaką możesz zabrać to: &6{MAX_TRANSFER_BALANCE}&7."
 
+  # wiadomość wyświetlana, gdy po zabraniu środków, stan konta gracza będzie niższy niż maksymalny ujemny
   takeMaxMinusBalanceError:
     chat: "&6&lTools &8» &cNie możesz zabrać graczowi aż takiej kwoty pieniędzy, ponieważ będzie miał zbyt ujemną wartość konta. Maksymalna kwota jaką możesz zabrać to: &6{MAX_TAKE_BALANCE}&c!"
 
+  # wiadomość wyświetlana, gdy po zabraniu środków, gracz będzie mieć ujemną wartość konta
   takeNegativeBalance:
     chat: "&6&lTools &8» &cGracz po zabraniu pieniędzy nie może mieć ujemnej wartości konta!"
 
+  # wiadomość wyświetlana, gdy graczowi zostaną zabrane pieniądze
+  # {PLAYER_NAME} - nick gracz, którego wartość konta została zmieniona
+  # {ADMIN_NAME} - nick administratora, który zmienił graczowi wartość konta
+  # {MONEY} - wartość, na jaką konto gracza zostało ustawione
   take:
     chat: "&6&lTools &8» &7Z konta gracza &6{PLAYER_NAME} &7zabrano &6{MONEY}&7$."
 
+  # wiadomość wyświetlana graczowi, gdy zostaną zabrane mu pieniądze
+  # {PLAYER_NAME} - nick gracz, którego wartość konta została zmieniona
+  # {ADMIN_NAME} - nick administratora, który zmienił graczowi wartość konta
+  # {MONEY} - wartość, na jaką konto gracza zostało ustawione
   takeToPlayer:
     chat: "&6&lTools &8» &7Zabrano ci &6{MONEY}&7$ z konta przez &6{ADMIN_NAME}&7."
 
