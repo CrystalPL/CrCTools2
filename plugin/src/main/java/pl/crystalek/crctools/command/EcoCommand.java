@@ -179,7 +179,7 @@ public final class EcoCommand extends SingleCommand {
                             break;
                         case MAX_MINUS_BALANCE:
                             messageExceptionPath = "economy.takeMaxMinusBalanceError";
-                            errorReplacements.put("{MAX_TAKE_BALANCE}", -config.getMaxMinusBalance() - userCache.getUserData(args[1]).get().getMoney());
+                            errorReplacements.put("{MAX_TAKE_BALANCE}", Math.abs(-config.getMaxMinusBalance() - userCache.getUserData(args[1]).get().getMoney()));
                             break;
                         default:
                             messageExceptionPath = "";
