@@ -59,6 +59,11 @@ command:
   EcoCommand:
     name: "eco"
     aliases: "economy"
+    subCommands:
+      GiveSubCommand: "give"
+      ResetSubCommand: "reset"
+      SetSubCommand: "set"
+      TakeSubCommand: "take"
 
 # czy ma być wyświetlana customowa wiadomość, jeśli użyta przez gracza komenda nie istnieje
 commandNotFoundMessage: true
@@ -146,7 +151,7 @@ afkAction:
 # ---------------------------------------------#
 
 # ilość pieniędzy, z jaką gracza zaczyna gre
-startingBalance: 0
+startingBalance: 123
 
 # maksymalna ilość pieniędzy, jaką może osiągnąć gracz
 maxBalance: 10_000_000_000_000
@@ -161,7 +166,7 @@ maxMinusBalance: 10_000
 currencySymbol: "$"
 
 # format pieniędzy
-numberFormatter: "##.00"
+numberFormatter: "0.00"
 
 # minimalna kwota operacyjna, nie może być mniejsza niż 0
 minTransferBalance: 0.1

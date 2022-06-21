@@ -2,9 +2,12 @@ package pl.crystalek.crctools.user;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import pl.crystalek.crctools.config.Config;
+import pl.crystalek.crctools.storage.Provider;
 import pl.crystalek.crctools.user.model.User;
 import pl.crystalek.crctools.user.model.UserData;
 
@@ -13,14 +16,30 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-@Getter
+@RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public final class UserCache {
+    @Getter
     Map<UUID, User> userMap = new HashMap<>();
-    Map<UUID, UserData> userDataByUUIDCache = new HashMap<>();
-    Map<String, UserData> userDataByNicknameCache = new HashMap<>();
+    Map<UUID, UserData> userDataByUUIDCache;
+    Map<String, UserData> userDataByNicknameCache;
+    Provider provider;
+    Config config;
 
-    public void addUser(final Player player, final User user) {
+    public void createUser(final Player player) {
+        final User defaultUser = new User(player, config.getStartingBalance());
+        provider.createUser(defaultUser);
+
+        final Optional<User> userOptional = provider.loadUser(player);
+        if (!userOptional.isPresent()) {
+            addUser(player, defaultUser);
+            return;
+        }
+
+        addUser(player, userOptional.get());
+    }
+
+    private void addUser(final Player player, final User user) {
         userMap.put(player.getUniqueId(), user);
         userDataByUUIDCache.put(player.getUniqueId(), user);
         userDataByNicknameCache.put(player.getName(), user);
@@ -31,7 +50,7 @@ public final class UserCache {
     }
 
     public User getUser(final Player player) {
-        return userMap.get(player.getUniqueId());
+        return getUser(player.getUniqueId());
     }
 
     public User getUser(final UUID playerUUID) {

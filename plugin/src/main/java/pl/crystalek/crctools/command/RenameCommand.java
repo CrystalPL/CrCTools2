@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import pl.crystalek.crcapi.command.impl.Command;
 import pl.crystalek.crcapi.command.impl.SingleCommand;
 import pl.crystalek.crcapi.command.model.CommandData;
 import pl.crystalek.crcapi.core.util.ColorUtil;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 public final class RenameCommand extends SingleCommand {
 
-    public RenameCommand(final MessageAPI messageAPI, final Map<Class<? extends SingleCommand>, CommandData> commandDataMap) {
+    public RenameCommand(final MessageAPI messageAPI, final Map<Class<? extends Command>, CommandData> commandDataMap) {
         super(messageAPI, commandDataMap);
     }
 

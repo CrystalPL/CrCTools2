@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pl.crystalek.crcapi.command.impl.Command;
 import pl.crystalek.crcapi.command.impl.SingleCommand;
 import pl.crystalek.crcapi.command.model.CommandData;
 import pl.crystalek.crcapi.core.util.NumberUtil;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public final class GameModeCommand extends SingleCommand {
     Set<String> argumentList = ImmutableSet.of("survival, creative, adventure, spectator");
 
-    public GameModeCommand(final MessageAPI messageAPI, final Map<Class<? extends SingleCommand>, CommandData> commandDataMap) {
+    public GameModeCommand(final MessageAPI messageAPI, final Map<Class<? extends Command>, CommandData> commandDataMap) {
         super(messageAPI, commandDataMap);
     }
 

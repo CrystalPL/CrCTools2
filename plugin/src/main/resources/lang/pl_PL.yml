@@ -13,7 +13,7 @@ playerNotFound:
 
 # wiadomość wyświetlana, gdy gracz chce wywołać komendę, która nie istnieje, lub która jest zablokowana
 commandNotFound:
-  chat: "&6&lTools &8» &7Nie odnaleziono podaje komendy."
+  chat: "&6&lTools &8» &cNie odnaleziono podanej komendy!"
 
 # konfiguracja wiadomości dla gracza afk
 afk:
@@ -229,7 +229,7 @@ economy:
   # {ADMIN_NAME} - nick administratora, który zmienił graczowi wartość konta
   # {MONEY} - wartość, na jaką konto gracza zostało ustawione
   setBalanceToPlayer:
-    chat: "&6&lTools &8» &7Twój stan konta został ustawiony na &6{MONEY}&7$ przez {ADMIN_NAME}&7."
+    chat: "&6&lTools &8» &7Twój stan konta został ustawiony na &6{MONEY}&7$ przez &6{ADMIN_NAME}&7."
 
   # wiadomość wyświetlana, gdy podana przez administratora ilość pieniędzy nie jest liczbą
   moneyValueError:

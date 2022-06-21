@@ -14,8 +14,8 @@ public class User extends UserData {
     long lastCommandUsedTime;
     boolean afk;
 
-    public User(final Player player) {
-        super(player.getName(), player.getUniqueId());
+    public User(final Player player, final double money) {
+        super(player.getName(), player.getUniqueId(), money);
     }
 
     public void resetAfk() {

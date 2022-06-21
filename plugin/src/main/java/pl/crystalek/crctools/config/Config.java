@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.crystalek.crcapi.command.impl.SingleCommand;
+import pl.crystalek.crcapi.command.impl.Command;
 import pl.crystalek.crcapi.command.loader.CommandLoader;
 import pl.crystalek.crcapi.command.model.CommandData;
 import pl.crystalek.crcapi.core.config.ConfigHelper;
@@ -34,7 +34,7 @@ import java.util.Optional;
 public final class Config extends ConfigHelper {
     final MessageAPI messageAPI;
     DatabaseConfig databaseConfig;
-    Map<Class<? extends SingleCommand>, CommandData> commandDataMap;
+    Map<Class<? extends Command>, CommandData> commandDataMap;
     boolean commandNotFoundMessage;
     List<String> blockedCommandList;
     boolean joinMessage;
@@ -71,7 +71,7 @@ public final class Config extends ConfigHelper {
 
     public void loadConfig() throws ConfigLoadException {
         this.databaseConfig = DatabaseConfigLoader.getDatabaseConfig(configuration.getConfigurationSection("database"), plugin);
-        this.commandDataMap = CommandLoader.loadCommands(configuration.getConfigurationSection("command"), plugin.getClass().getClassLoader(), plugin);
+        this.commandDataMap = CommandLoader.loadCommands(configuration.getConfigurationSection("command"), plugin.getClass().getClassLoader());
         this.commandNotFoundMessage = ConfigParserUtil.getBoolean(configuration, "commandNotFoundMessage");
         this.blockedCommandList = configuration.getStringList("blockedCommands");
         this.antiAfk = ConfigParserUtil.getBoolean(configuration, "antiAfk");

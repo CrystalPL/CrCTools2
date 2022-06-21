@@ -11,9 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.crystalek.crcapi.message.api.MessageAPI;
 import pl.crystalek.crctools.config.Config;
-import pl.crystalek.crctools.storage.Provider;
 import pl.crystalek.crctools.user.UserCache;
-import pl.crystalek.crctools.user.model.User;
 
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
@@ -22,7 +20,6 @@ public final class PlayerJoinListener implements Listener {
     UserCache userCache;
     MessageAPI messageAPI;
     JavaPlugin plugin;
-    Provider provider;
 
     @EventHandler
     public void onJoin(final PlayerJoinEvent event) {
@@ -35,8 +32,6 @@ public final class PlayerJoinListener implements Listener {
             messageAPI.sendMessage("motdMessage", event.getPlayer(), ImmutableMap.of("{PLAYER_NAME}", event.getPlayer().getName()));
         }
 
-        userCache.addUser(event.getPlayer(), new User(event.getPlayer()));
-
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> provider.createUser(event.getPlayer()));
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> userCache.createUser(event.getPlayer()));
     }
 }
