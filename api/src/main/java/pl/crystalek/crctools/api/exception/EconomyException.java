@@ -1,11 +1,9 @@
 package pl.crystalek.crctools.api.exception;
 
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import pl.crystalek.crctools.api.economy.EconomyResult;
 
-@Getter
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public final class EconomyException extends RuntimeException {
     EconomyResult economyResult;
@@ -14,5 +12,21 @@ public final class EconomyException extends RuntimeException {
         super(message);
 
         this.economyResult = economyResult;
+    }
+
+    /**
+     * @return Message with an error
+     */
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
+
+    /**
+     * @return Type of error
+     * @see EconomyResult
+     */
+    public EconomyResult getEconomyResult() {
+        return economyResult;
     }
 }

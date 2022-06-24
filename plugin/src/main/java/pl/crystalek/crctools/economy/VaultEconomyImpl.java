@@ -139,7 +139,8 @@ public class VaultEconomyImpl implements net.milkbowl.vault.economy.Economy {
         EconomyResponse.ResponseType economyResponse;
         String errorMessage;
         try {
-            economyResponse = economy.takeMoney(playerName, amount) ? EconomyResponse.ResponseType.SUCCESS : EconomyResponse.ResponseType.FAILURE;
+            economy.takeMoney(playerName, amount);
+            economyResponse = EconomyResponse.ResponseType.SUCCESS;
             errorMessage = null;
         } catch (final EconomyException exception) {
             economyResponse = EconomyResponse.ResponseType.FAILURE;
@@ -154,7 +155,8 @@ public class VaultEconomyImpl implements net.milkbowl.vault.economy.Economy {
         EconomyResponse.ResponseType economyResponse;
         String errorMessage;
         try {
-            economyResponse = economy.takeMoney(player, amount) ? EconomyResponse.ResponseType.SUCCESS : EconomyResponse.ResponseType.FAILURE;
+            economy.takeMoney(player, amount);
+            economyResponse = EconomyResponse.ResponseType.SUCCESS;
             errorMessage = null;
         } catch (final EconomyException exception) {
             economyResponse = EconomyResponse.ResponseType.FAILURE;
@@ -179,7 +181,8 @@ public class VaultEconomyImpl implements net.milkbowl.vault.economy.Economy {
         EconomyResponse.ResponseType economyResponse;
         String errorMessage;
         try {
-            economyResponse = economy.giveMoney(playerName, amount) ? EconomyResponse.ResponseType.SUCCESS : EconomyResponse.ResponseType.FAILURE;
+            economy.giveMoney(playerName, amount);
+            economyResponse = EconomyResponse.ResponseType.SUCCESS;
             errorMessage = null;
         } catch (final EconomyException exception) {
             economyResponse = EconomyResponse.ResponseType.FAILURE;
@@ -194,7 +197,8 @@ public class VaultEconomyImpl implements net.milkbowl.vault.economy.Economy {
         EconomyResponse.ResponseType economyResponse;
         String errorMessage;
         try {
-            economyResponse = economy.giveMoney(player, amount) ? EconomyResponse.ResponseType.SUCCESS : EconomyResponse.ResponseType.FAILURE;
+            economy.giveMoney(player, amount);
+            economyResponse = EconomyResponse.ResponseType.SUCCESS;
             errorMessage = null;
         } catch (final EconomyException exception) {
             economyResponse = EconomyResponse.ResponseType.FAILURE;

@@ -48,7 +48,7 @@ public class EconomyImpl implements Economy {
         return userDataOptional.get().getMoney() >= money;
     }
 
-    private boolean takeMoney(final Optional<UserData> userDataOptional, final double money) {
+    private void takeMoney(final Optional<UserData> userDataOptional, final double money) {
         if (!userDataOptional.isPresent()) {
             throw new EconomyException("user not found", EconomyResult.USER_NOT_FOUND);
         }
@@ -77,10 +77,9 @@ public class EconomyImpl implements Economy {
 
         userData.setMoney(moneyAfterTake);
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> provider.setMoney(userData.getUuid(), moneyAfterTake));
-        return true;
     }
 
-    private boolean giveMoney(final Optional<UserData> userDataOptional, final double money) {
+    private void giveMoney(final Optional<UserData> userDataOptional, final double money) {
         if (!userDataOptional.isPresent()) {
             throw new EconomyException("user not found", EconomyResult.USER_NOT_FOUND);
         }
@@ -105,7 +104,6 @@ public class EconomyImpl implements Economy {
 
         userData.setMoney(moneyAfterGive);
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> provider.setMoney(userData.getUuid(), moneyAfterGive));
-        return true;
     }
 
     private void setMoney(final Optional<UserData> userDataOptional, final double money) {
@@ -161,33 +159,33 @@ public class EconomyImpl implements Economy {
     }
 
     @Override
-    public boolean takeMoney(final @NonNull OfflinePlayer player, final double money) throws EconomyException {
-        return takeMoney(userCache.getUserData(player.getUniqueId()), money);
+    public void takeMoney(final @NonNull OfflinePlayer player, final double money) throws EconomyException {
+        takeMoney(userCache.getUserData(player.getUniqueId()), money);
     }
 
     @Override
-    public boolean takeMoney(final @NonNull String playerName, final double money) throws EconomyException {
-        return takeMoney(userCache.getUserData(playerName), money);
+    public void takeMoney(final @NonNull String playerName, final double money) throws EconomyException {
+        takeMoney(userCache.getUserData(playerName), money);
     }
 
     @Override
-    public boolean takeMoney(final @NonNull UUID playerUUID, final double money) throws EconomyException {
-        return takeMoney(userCache.getUserData(playerUUID), money);
+    public void takeMoney(final @NonNull UUID playerUUID, final double money) throws EconomyException {
+        takeMoney(userCache.getUserData(playerUUID), money);
     }
 
     @Override
-    public boolean giveMoney(final @NonNull OfflinePlayer player, final double money) throws EconomyException {
-        return giveMoney(userCache.getUserData(player.getUniqueId()), money);
+    public void giveMoney(final @NonNull OfflinePlayer player, final double money) throws EconomyException {
+        giveMoney(userCache.getUserData(player.getUniqueId()), money);
     }
 
     @Override
-    public boolean giveMoney(final @NonNull String playerName, final double money) throws EconomyException {
-        return giveMoney(userCache.getUserData(playerName), money);
+    public void giveMoney(final @NonNull String playerName, final double money) throws EconomyException {
+        giveMoney(userCache.getUserData(playerName), money);
     }
 
     @Override
-    public boolean giveMoney(final @NonNull UUID playerUUID, final double money) throws EconomyException {
-        return giveMoney(userCache.getUserData(playerUUID), money);
+    public void giveMoney(final @NonNull UUID playerUUID, final double money) throws EconomyException {
+        giveMoney(userCache.getUserData(playerUUID), money);
     }
 
     @Override

@@ -1,5 +1,8 @@
 package pl.crystalek.crctools.api.economy;
 
+/**
+ * Error results that may appear when calling method.
+ */
 public enum EconomyResult {
     USER_NOT_FOUND,
     NEGATIVE_AMOUNT,

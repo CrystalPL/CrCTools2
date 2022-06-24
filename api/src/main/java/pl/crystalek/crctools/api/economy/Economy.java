@@ -6,35 +6,162 @@ import pl.crystalek.crctools.api.exception.EconomyException;
 
 import java.util.UUID;
 
+/**
+ * Economy API
+ */
 public interface Economy {
 
-    double getBalance(final @NonNull OfflinePlayer player) throws EconomyException;
+    /**
+     * Get balance of player
+     *
+     * @param player to check
+     * @return Amount of money
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player is null
+     */
+    double getBalance(final @NonNull OfflinePlayer player);
 
-    double getBalance(final @NonNull String playerName) throws EconomyException;
+    /**
+     * Get balance of player
+     *
+     * @param playerName to check
+     * @return Amount of money
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player name is null
+     */
+    double getBalance(final @NonNull String playerName);
 
-    double getBalance(final @NonNull UUID playerUUID) throws EconomyException;
 
-    boolean hasMoney(final @NonNull OfflinePlayer player, final double money) throws EconomyException;
+    /**
+     * Get balance of player
+     *
+     * @param playerUUID to check
+     * @return Amount of money
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player uuid is null
+     */
+    double getBalance(final @NonNull UUID playerUUID);
 
-    boolean hasMoney(final @NonNull String playerName, final double money) throws EconomyException;
+    /**
+     * Check if player has money
+     *
+     * @param player to check
+     * @param money  amount of money to check
+     * @return True if player has money
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player is null
+     */
+    boolean hasMoney(final @NonNull OfflinePlayer player, final double money);
 
-    boolean hasMoney(final @NonNull UUID playerUUID, final double money) throws EconomyException;
+    /**
+     * Check if player has money
+     *
+     * @param playerName to check
+     * @param money      amount of money to check
+     * @return True if player has money
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player name is null
+     */
+    boolean hasMoney(final @NonNull String playerName, final double money);
 
-    boolean takeMoney(final @NonNull OfflinePlayer player, final double money) throws EconomyException;
+    /**
+     * Check if player has money
+     *
+     * @param playerUUID to check
+     * @param money      amount of money to check
+     * @return True if player has money
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player uuid is null
+     */
+    boolean hasMoney(final @NonNull UUID playerUUID, final double money);
 
-    boolean takeMoney(final @NonNull String playerName, final double money) throws EconomyException;
+    /**
+     * Take money from player account
+     *
+     * @param player to take money from account
+     * @param money  amount of money to take
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player is null
+     */
+    void takeMoney(final @NonNull OfflinePlayer player, final double money);
 
-    boolean takeMoney(final @NonNull UUID playerUUID, final double money) throws EconomyException;
+    /**
+     * Take money from player account
+     *
+     * @param playerName to take money from account
+     * @param money      amount of money to take
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player name is null
+     */
+    void takeMoney(final @NonNull String playerName, final double money);
 
-    boolean giveMoney(final @NonNull OfflinePlayer player, final double money) throws EconomyException;
+    /**
+     * Take money from player account
+     *
+     * @param playerUUID to take money from account
+     * @param money      amount of money to take
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player uuid is null
+     */
+    void takeMoney(final @NonNull UUID playerUUID, final double money);
 
-    boolean giveMoney(final @NonNull String playerName, final double money) throws EconomyException;
+    /**
+     * Give money to player
+     *
+     * @param player to give money
+     * @param money  amount of money to give
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player is null
+     */
+    void giveMoney(final @NonNull OfflinePlayer player, final double money);
 
-    boolean giveMoney(final @NonNull UUID playerUUID, final double money) throws EconomyException;
+    /**
+     * Give money to player
+     *
+     * @param playerName to give money
+     * @param money      amount of money to give
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player name is null
+     */
+    void giveMoney(final @NonNull String playerName, final double money);
 
-    void setMoney(final @NonNull OfflinePlayer player, final double money) throws EconomyException;
+    /**
+     * Give money to player
+     *
+     * @param playerUUID to give money
+     * @param money      amount of money to give
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player uuid is null
+     */
+    void giveMoney(final @NonNull UUID playerUUID, final double money);
 
-    void setMoney(final @NonNull String playerName, final double money) throws EconomyException;
+    /**
+     * Set money of player
+     *
+     * @param player to set money
+     * @param money  amount of money to set
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player is null
+     */
+    void setMoney(final @NonNull OfflinePlayer player, final double money);
 
-    void setMoney(final @NonNull UUID playerUUID, final double money) throws EconomyException;
+    /**
+     * Set money of player
+     *
+     * @param playerName to set money
+     * @param money      amount of money to set
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player name is null
+     */
+    void setMoney(final @NonNull String playerName, final double money);
+
+    /**
+     * Set money of player
+     *
+     * @param playerUUID to set money
+     * @param money      amount of money to set
+     * @throws EconomyException     if there is any problem
+     * @throws NullPointerException if player uuid is null
+     */
+    void setMoney(final @NonNull UUID playerUUID, final double money);
 }
