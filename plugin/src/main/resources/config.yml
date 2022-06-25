@@ -131,7 +131,7 @@ fishWhileAfk: false
 
 # czas nieaktywności, po jakim gracz ma być uznawany za afk
 # czas w sekundach
-afkTime: 10
+afkTime: 600
 
 # jakie akcję mają się dziać po danym czasie afczenia
 # lista akcji:
