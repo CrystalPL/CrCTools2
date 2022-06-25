@@ -313,3 +313,11 @@ economy:
       - "&6&lTools &8» &6/eco take <gracz> <ilość> &f- &7zabiera graczowi zadaną ilość pieniędzy"
       - "&6&lTools &8» &6/eco reset <gracz> true &f- &7ustawia graczowi stan konta do wartości początkowej (z configu)"
       - "&6&lTools &8» &6/eco reset <gracz> &f- &7zeruje graczowi stan konta"
+
+money:
+  money:
+    chat: "&6&lTools &8» &7Twój stan konta wynosi: &6{BALANCE}&7$."
+  playerMoney:
+    chat: "&6&lTools &8» &7Stan konta gracza &6{PLAYER_NAME} &7wynosi &6{BALANCE}&7$."
+  usage:
+    chat: "&6&lTools &8» &cPoprawne użycia: &7/money (gracz)."

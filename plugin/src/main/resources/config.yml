@@ -64,6 +64,9 @@ command:
       ResetSubCommand: "reset"
       SetSubCommand: "set"
       TakeSubCommand: "take"
+  MoneyCommand:
+    name: "money"
+    aliases: ""
 
 # czy ma być wyświetlana customowa wiadomość, jeśli użyta przez gracza komenda nie istnieje
 commandNotFoundMessage: true
@@ -128,7 +131,7 @@ fishWhileAfk: false
 
 # czas nieaktywności, po jakim gracz ma być uznawany za afk
 # czas w sekundach
-afkTime: 600
+afkTime: 10
 
 # jakie akcję mają się dziać po danym czasie afczenia
 # lista akcji:
