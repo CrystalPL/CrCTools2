@@ -28,7 +28,7 @@ public final class PlayerCommandListener implements Listener {
 
         //blocking commands
         final String commandName = event.getMessage().toLowerCase().split(" ")[0].substring(1);
-        if (!config.getBlockedCommandList().isEmpty() && config.getBlockedCommandList().contains(commandName)) {
+        if (config.getBlockedCommandList().contains(commandName)) {
             messageAPI.sendMessage("commandNotFound", player);
             event.setCancelled(true);
             return;
