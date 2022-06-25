@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -111,6 +112,7 @@ public final class CrCTools extends JavaPlugin {
         CommandRegistry.register(new RenameCommand(messageAPI, commandDataMap));
         CommandRegistry.register(new LoreCommand(messageAPI, commandDataMap));
         CommandRegistry.register(new EcoCommand(messageAPI, commandDataMap, economy, config, userCache));
+        CommandRegistry.register(new MoneyCommand(messageAPI, commandDataMap, economy));
     }
 
     private void registerListeners() {
@@ -134,7 +136,7 @@ public final class CrCTools extends JavaPlugin {
 
     private UserCache loadUsers() {
         final Map<UUID, UserData> userDataByUUIDCache = new HashMap<>();
-        final Map<String, UserData> userDataByNicknameCache = new HashMap<>();
+        final Map<String, UserData> userDataByNicknameCache = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
         final Provider provider = storage.getProvider();
         for (final UserData userData : provider.loadUserData()) {
