@@ -325,4 +325,48 @@ money:
 
   # wiadomość wyświetlana, gdy komenda zostanie wywołana niepoprawnie
   usage:
-    chat: "&6&lTools &8» &cPoprawne użycia: &7/money (gracz)."
+    chat: "&6&lTools &8» &cPoprawne użycie: &7/money (gracz)."
+
+tpAll:
+  sendRequest:
+    chat: "&6&lTools &8» &7Wysłano prośbę o teleportację do graczy!"
+  usage:
+    chat: "&6&lTools &8» &cPoprawne użycie: &7/tpall."
+
+tpAuto:
+  autoEnable:
+    chat: "&6&lTools &8» &7Automatyczne akceptowanie próśb o teleportację zostało włączone"
+  autoDisable:
+    chat: "&6&lTools &8» &7Automatyczne akceptowanie próśb o teleportację zostało wyłączone"
+  teleportAutoAccept:
+    chat: "&6&lTools &8» &7Zaakceptowałeś prośbę o teleportacje gracza &6{PLAYER_NAME}&7, ponieważ masz włączona opcję automatycznego akceptowania próśb o teleportacje."
+  teleport:
+    chat: "&6&lTools &8» &7Gracz &6{PLAYER_NAME} &7przeteleportował się do ciebie, ponieważ masz włączona opcję automatycznego akceptowania próśb o teleportacje."
+  usage:
+    chat: "&6&lTools &8» &cPoprawne użycie: &7/tpauto"
+
+tpa:
+  sendRequest:
+    chat: "&6&lTools &8» &7Wysłano prośbę o teleportacje do gracza &6{PLAYER_NAME}&7."
+  requestReceiver:
+    chat:
+      - "&6&lTools &8» &6{REQUESTER_NAME} &7wysyła prośbę o teleportacje do Ciebie."
+      - "&6&lTools &8» &7Aby zaakceptować teleport, wpisz &6/tpaccept&7."
+      - "&6&lTools &8» &7Aby odmówić teleportacji, wpisz &6/tpdeny&7."
+      - "&6&lTools &8» &7Prośba o teleportacje wygaśnie za &6{TIME} &7sekund."
+  tptoggle:
+    chat: "&6&lTools &8» &cGracz &6{PLAYER_NAME} &7nie przyjmuję próśb o teleportacje!"
+  block:
+    chat: "&6&lTools &8» &cNie możesz wysyłać próśb o teleportacje do gracza &6{PLAYER_NAME} &cponieważ cie zablokował!"
+  cooldown:
+    chat: "&6&lTools &8» &cTen gracz otrzymał niedawno prośbę o teleportacje od ciebie. Następną prośbę możesz wysłać za: &6{TIME}&7."
+  alreadySentRequest:
+    chat: "&6&lTools &8» &cWysłałeś już prośbę o teleportacje do tego gracza!"
+  usage:
+    chat: "&6&lTools &8» &cPoprawne użycie: &7/tpa <gracz>"
+
+teleport:
+  accept:
+    chat: "&6&lTools &8» &7Gracza &6{PLAYER_NAME} &7zaakceptował twoją prośbę o teleportacje."
+  teleport:
+    chat: "&6&lTools &8» &7Zostałeś przeteleportowany do gracza &6{PLAYER_NAME}&7."

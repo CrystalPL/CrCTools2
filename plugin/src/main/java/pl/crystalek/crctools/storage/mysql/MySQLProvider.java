@@ -61,7 +61,7 @@ public final class MySQLProvider extends BaseSQLProvider implements Provider {
                 final String nickname = resultSet.getString("nickname");
                 final double money = resultSet.getDouble("money");
 
-                userDataSet.add(new UserData(nickname, uuid, money));
+                userDataSet.add(new UserData(uuid, nickname, money));
             } while (resultSet.next());
 
 

@@ -46,7 +46,10 @@ public final class UserCache {
     }
 
     public void removeUser(final UUID playerUUID) {
-        userMap.remove(playerUUID);
+        final User user = userMap.remove(playerUUID);
+        if (user != null) {
+            user.getPlayerReference().clear();
+        }
     }
 
     public User getUser(final Player player) {

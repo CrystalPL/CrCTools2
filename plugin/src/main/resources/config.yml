@@ -67,6 +67,33 @@ command:
   MoneyCommand:
     name: "money"
     aliases: ""
+  TpaAllCommand:
+    name: "tpall"
+    aliases: ""
+  TpaAutoCommand:
+    name: "tpauto"
+    aliases: ""
+  TpaBlockCommand:
+    name: "tpblock"
+    aliases: ""
+  TpaCancelCommand:
+    name: "tpcancel"
+    aliases: ""
+  TpacceptCommand:
+    name: "tpaccept"
+    aliases: ""
+  TpaCommand:
+    name: "tpa"
+    aliases: ""
+  TpaHereCommand:
+    name: "tphere"
+    aliases: ""
+  TpDenyCommand:
+    name: "tpdeny"
+    aliases: ""
+  TptoggleCommand:
+    name: "tptoggle"
+    aliases: ""
 
 # czy ma być wyświetlana customowa wiadomość, jeśli użyta przez gracza komenda nie istnieje
 commandNotFoundMessage: true
@@ -176,3 +203,37 @@ minTransferBalance: 0.1
 
 # maksymalna kwota operacyjna
 maxTransferBalance: 10_000_000
+
+# ---------------------------------------------#
+#                    TPA                       #
+# ---------------------------------------------#
+
+# czas na zaakceptowanie prośby o teleportacje, w sekundach
+teleportAcceptTime: 120
+
+# czy po zaakceptowaniu teleportacji gracz ma być teleportowany od razu
+instantTeleport: false
+
+# czas oczekiwania poszczególnej rangi na teleportacje, w sekundach
+# jeśli gracz będzie miał rangę, która nie będzie wymieniona w poniższej liście, to korzysta on z domyślnego opóźnienia
+# ! WYMAGANY VAULT I INNY PLUGIN OBSŁUGUJĄCY UPRAWNIENIA!
+teleportRankTime:
+  Gracz: 15
+  VIP: 10
+  SVIP: 5
+  Admin: 0
+
+# domyślny czas oczekiwania na teleportacje
+# używane, jeśli serwer nie posiada pluginu vault oraz innego, obsługującego uprawnienia
+defaultTeleportTime: 10
+
+# czy gracz może się ruszać podczas oczekiwania na teleportację
+moveWhileTeleport: false
+
+# czy gracz ma być teleportowany w aktualną lokalizację gracza — TRUE
+# czy w miejsce, w którym teleportacja została zaakceptowana — FALSE
+teleportToCurrentLocation: true
+
+# cooldown między wysyłaniem próśb o teleportację, w sekundach
+# jeśli nie chcesz, by takie opóźnienie istniało — wpisz 0
+teleportCooldownTime: 60

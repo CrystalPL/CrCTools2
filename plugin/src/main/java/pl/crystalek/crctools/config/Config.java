@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.crystalek.crcapi.command.impl.Command;
@@ -21,13 +22,11 @@ import pl.crystalek.crctools.afk.AfkActionType;
 import pl.crystalek.crctools.afk.IAfkPunishment;
 import pl.crystalek.crctools.afk.impl.CommandAfkPunishment;
 import pl.crystalek.crctools.afk.impl.MessageAfkPunishment;
+import pl.crystalek.crctools.hook.VaultHook;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -62,6 +61,13 @@ public final class Config extends ConfigHelper {
     NumberFormat numberFormatter;
     double minTransferBalance;
     double maxTransferBalance;
+    long teleportAcceptTime;
+    boolean instantTeleport;
+    Map<String, Long> teleportRankTime;
+    long defaultTeleportTime;
+    boolean moveWhileTeleport;
+    boolean teleportToCurrentLocation;
+    long teleportCooldownTime;
 
     public Config(final JavaPlugin plugin, final String fileName, final MessageAPI messageAPI) {
         super(plugin, fileName);
@@ -82,13 +88,13 @@ public final class Config extends ConfigHelper {
         this.attackEntityWhileAfk = ConfigParserUtil.getBoolean(configuration, "attackEntityWhileAfk");
         this.pickupItemsWhileAfk = ConfigParserUtil.getBoolean(configuration, "pickupItemsWhileAfk");
         this.fishWhileAfk = ConfigParserUtil.getBoolean(configuration, "fishWhileAfk");
-        this.afkTime = ConfigParserUtil.getLong(configuration, "afkTime") * 1000L;
+        this.afkTime = ConfigParserUtil.getLong(configuration, "afkTime", afkTime -> afkTime > 0) * 1000L;
         this.afkActionTypeMap = loadAfkActionTypeMap();
         this.joinMessage = ConfigParserUtil.getBoolean(configuration, "joinMessage");
         this.quitMessage = ConfigParserUtil.getBoolean(configuration, "quitMessage");
         this.motdMessage = ConfigParserUtil.getBoolean(configuration, "motdMessage");
         this.commandCoolDown = ConfigParserUtil.getBoolean(configuration, "commandCoolDown");
-        this.commandCoolDownTime = ConfigParserUtil.getLong(configuration, "commandCoolDownTime") * 1000L;
+        this.commandCoolDownTime = ConfigParserUtil.getLong(configuration, "commandCoolDownTime", commandCoolDownTime -> commandCoolDownTime > 0) * 1000L;
         this.timeDelimiter = ConfigParserUtil.getString(configuration, "timeDelimiter");
         this.shortFormTime = ConfigParserUtil.getBoolean(configuration, "shortFormTime");
         this.startingBalance = ConfigParserUtil.getDouble(configuration, "startingBalance");
@@ -99,6 +105,35 @@ public final class Config extends ConfigHelper {
         this.numberFormatter = new DecimalFormat(ConfigParserUtil.getString(configuration, "numberFormatter"));
         this.minTransferBalance = ConfigParserUtil.getDouble(configuration, "minTransferBalance", minTransferBalance -> minTransferBalance > 0);
         this.maxTransferBalance = ConfigParserUtil.getDouble(configuration, "maxTransferBalance");
+        this.teleportAcceptTime = ConfigParserUtil.getLong(configuration, "teleportAcceptTime", teleportAcceptTime -> teleportAcceptTime > 0);
+        this.instantTeleport = ConfigParserUtil.getBoolean(configuration, "instantTeleport");
+        this.teleportRankTime = loadTeleportRankTime();
+        this.defaultTeleportTime = ConfigParserUtil.getLong(configuration, "defaultTeleportTime", defaultTeleportTime -> defaultTeleportTime > 0);
+        this.moveWhileTeleport = ConfigParserUtil.getBoolean(configuration, "moveWhileTeleport");
+        this.teleportToCurrentLocation = ConfigParserUtil.getBoolean(configuration, "teleportToCurrentLocation");
+        this.teleportCooldownTime = ConfigParserUtil.getLong(configuration, "teleportCooldownTime", teleportCooldownTime -> teleportCooldownTime > 0);
+    }
+
+    private Map<String, Long> loadTeleportRankTime() throws ConfigLoadException {
+        if (!VaultHook.isEnableVault()) {
+            return new HashMap<>();
+        }
+
+        final Permission permission = VaultHook.getPermission();
+        final List<String> rankList = Arrays.asList(permission.getGroups());
+        final Map<String, Long> teleportRankTimeMap = new HashMap<>();
+
+        final ConfigurationSection teleportRankTimeConfiguration = configuration.getConfigurationSection("teleportRankTime");
+        for (final String rankName : teleportRankTimeConfiguration.getKeys(false)) {
+            if (!rankList.contains(rankName)) {
+                throw new ConfigLoadException("Wystąpił błąd podczas ładowania sekcji teleportRankTime. Nie odnaleziono rangi: " + rankName);
+            }
+
+            final long teleportTime = ConfigParserUtil.getLong(teleportRankTimeConfiguration, rankName, rankTime -> rankTime > 0) * 1000L;
+            teleportRankTimeMap.put(rankName, teleportTime);
+        }
+
+        return teleportRankTimeMap;
     }
 
     private Map<Long, IAfkPunishment> loadAfkActionTypeMap() throws ConfigLoadException {

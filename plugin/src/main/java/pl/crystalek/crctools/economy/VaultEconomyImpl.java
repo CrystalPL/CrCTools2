@@ -17,7 +17,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PROTECTED)
-public class VaultEconomyImpl implements net.milkbowl.vault.economy.Economy {
+class VaultEconomyImpl implements net.milkbowl.vault.economy.Economy {
     Config config;
     UserCache userCache;
     JavaPlugin plugin;

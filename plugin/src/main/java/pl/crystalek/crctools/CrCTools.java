@@ -17,6 +17,7 @@ import pl.crystalek.crctools.command.*;
 import pl.crystalek.crctools.command.economy.EcoCommand;
 import pl.crystalek.crctools.config.Config;
 import pl.crystalek.crctools.economy.EconomyImpl;
+import pl.crystalek.crctools.hook.VaultHook;
 import pl.crystalek.crctools.listener.*;
 import pl.crystalek.crctools.storage.Provider;
 import pl.crystalek.crctools.storage.mysql.MySQLProvider;
@@ -78,6 +79,8 @@ public final class CrCTools extends JavaPlugin {
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
+
+        VaultHook.init(this);
 
         storage.initProvider(MySQLProvider.class, null, null);
         final Provider provider = storage.getProvider();
